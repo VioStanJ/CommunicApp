@@ -62,21 +62,22 @@
                         <i class="mdi mdi-bell-outline"></i>
                     </a>
                 </li>
-                <li data-toggle="tooltip" title="User menu" data-placement="right">
+                <li data-toggle="tooltip" title="{{Auth::user()->name}}" data-placement="right">
                     <a href="./login.html" data-intro-js="3" data-toggle="dropdown">
                         <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
+                            <img src="{{asset(Auth::user()->avatar)}}" class="rounded-circle" alt="image">
                         </figure>
                     </a>
                     <div class="dropdown-menu">
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#editProfile">Edit
                             profile</a>
-                        <a href="#" class="dropdown-item" data-right-sidebar="user-profile">Profile</a>
-                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#settingsModal">Settings</a>
-                        <a href="#" class="dropdown-item d-none d-md-block example-app-tour-start">Start Tour</a>
                         <div class="dropdown-divider"></div>
-                        <a href="login.html" class="dropdown-item text-danger">Logout</a>
+                        <a href="#" onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();" class="dropdown-item text-danger">Logout</a>
                     </div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </li>
             </ul>
         </div>

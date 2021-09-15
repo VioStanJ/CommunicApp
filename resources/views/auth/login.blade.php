@@ -65,7 +65,7 @@
 
 
         <div class="my-5">
-            <p>Don't have an account? <a href="./register.html">Sign up now!</a></p>
+            <p>Don't have an account? <a href="/register">Sign up now!</a></p>
         </div>
     </form>
     <!-- ./ form -->

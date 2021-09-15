@@ -35,7 +35,7 @@
 
     <!-- form -->
     <form method="POST" action="{{ route('register') }}">
-
+        @csrf
         <div class="form-group">
             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Fullname">
 

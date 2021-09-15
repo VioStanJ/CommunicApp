@@ -17,6 +17,7 @@ class CreateFriendsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('request_from');
             $table->unsignedBigInteger('request_to');
+            $table->string('topic')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });
