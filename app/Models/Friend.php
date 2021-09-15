@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Friend extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['request_from','request_to','status'];
 }
