@@ -182,16 +182,17 @@
         </div>
         <div class="left-sidebar-content">
             <ul class="list-group list-group-flush">
+                @foreach ($friends as $item)
                 <li class="list-group-item">
                     <div>
                         <figure class="avatar mr-3">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
+                            <img src="{{$item->user->avatar??'/static/avatar.jpg'}}" class="rounded-circle" alt="image">
                         </figure>
                     </div>
                     <div class="users-list-body">
                         <div>
-                            <h5>Harrietta Souten</h5>
-                            <p>Dental Hygienist</p>
+                            <h5>{{$item->user->name??'--'}}</h5>
+                            <p>{{$item->user->email??'--'}}</p>
                         </div>
                         <div class="users-list-action">
                             <div class="action-toggle">
@@ -211,36 +212,7 @@
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
-                    <div>
-                        <figure class="avatar avatar-state-warning mr-3">
-                            <span class="avatar-title bg-success rounded-circle">A</span>
-                        </figure>
-                    </div>
-                    <div class="users-list-body">
-                        <div>
-                            <h5>Aline McShee</h5>
-                            <p>Marketing Assistant</p>
-                        </div>
-                        <div class="users-list-action">
-                            <div class="action-toggle">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown" href="#">
-                                        <i class="mdi mdi-dots-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">New chat</a>
-                                        <a href="#" data-right-sidebar="user-profile"
-                                           class="dropdown-item">Profile</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item text-danger">Block</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-
+                @endforeach
             </ul>
         </div>
     </div>

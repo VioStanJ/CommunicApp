@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Friend;
 use App\Models\User;
+use DB;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,16 @@ class HomeController extends Controller
             $value->friend = User::find($value->request_from);
         }
 
-        return view('home',compact(['invitations']));
+        $friends = DB::select('select c.id,c.request_from from (select * from friends where status=1 and request_from= '.$user->id.' or request_to= '.$user->id.') as c where status=1');
+
+        foreach ($friends as $key => $value) {
+            if($value->request_from != $user->id){
+                $value->user = User::find($value->request_from);
+            }else{
+                $value->user = User::find($value->request_to);
+            }
+        }
+
+        return view('home',compact(['invitations','friends']));
     }
 }
