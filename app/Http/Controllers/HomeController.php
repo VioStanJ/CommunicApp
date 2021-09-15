@@ -34,7 +34,7 @@ class HomeController extends Controller
             $value->friend = User::find($value->request_from);
         }
 
-        $friends = DB::select('select c.id,c.request_from from (select * from friends where status=1 and request_from= '.$user->id.' or request_to= '.$user->id.') as c where status=1');
+        $friends = DB::select('select c.id,c.request_from,c.request_to from (select * from friends where status=1 and request_from= '.$user->id.' or request_to= '.$user->id.') as c where status=1');
 
         foreach ($friends as $key => $value) {
             if($value->request_from != $user->id){

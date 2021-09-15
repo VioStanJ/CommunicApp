@@ -18,21 +18,10 @@
                         <i class="mdi mdi-plus"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item" data-left-sidebar="friends">Start Chat</a>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#newGroup">Add Group</a>
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveUsers">Invite users</a>
                     </div>
                 </li>
-                {{-- <li class="navigation-action-button dropright" title="New" data-placement="right">
-                    <a href="#" data-right-sidebar="notifications">
-                        <i class="mdi mdi-bell-outline"></i>
-                    </a>
-                </li> --}}
-                {{-- <li class="list-inline-item" data-toggle="tooltip" title="Notification" >
-                    <a href="#" class="btn btn-info btn-floating" data-right-sidebar="notifications">
-                        <i class="mdi mdi-bell-outline"></i>
-                    </a>
-                </li> --}}
                 <li>
                     <a class="active" data-intro-js="2" data-left-sidebar="chats" href="#" data-toggle="tooltip"
                        title="Chats" data-placement="right">

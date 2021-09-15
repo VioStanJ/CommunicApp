@@ -11,11 +11,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" action="{{route('create.group')}}">
+                    @csrf
+
                     <div class="form-group">
                         <label for="group_name" class="col-form-label">Group name</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="group_name">
+                            <input type="text" class="form-control" id="group_name" name="group_name">
                             <div class="input-group-append">
                                 <button class="btn btn-success" data-toggle="dropdown" title="Emoji" type="button">
                                     <i class="mdi mdi-face"></i>
@@ -63,67 +65,16 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mb-2">The group members</p>
-                    <div class="form-group">
-                        <div class="avatar-group">
-                            <figure class="avatar" data-toggle="tooltip" title="Tobit Spraging">
-                                <span class="avatar-title bg-success rounded-circle">T</span>
-                            </figure>
-                            <figure class="avatar" data-toggle="tooltip" title="Cloe Jeayes">
-                                <img src="./dist/media/img/avatar8.jpg" class="rounded-circle" alt="image">
-                            </figure>
-                            <figure class="avatar" data-toggle="tooltip" title="Marlee Perazzo">
-                                <span class="avatar-title bg-warning rounded-circle">M</span>
-                            </figure>
-                            <figure class="avatar" data-toggle="tooltip" title="Stafford Pioch">
-                                <img src="./dist/media/img/avatar1.jpg" class="rounded-circle" alt="image">
-                            </figure>
-                            <figure class="avatar" data-toggle="tooltip" title="Bethena Langsdon">
-                                <span class="avatar-title bg-info rounded-circle">B</span>
-                            </figure>
-                        </div>
-                        <button type="button" class="btn btn-light" title="Add User"
-                                data-toggle="dropdown">
-                            Add new user
-                        </button>
-                        <div class="dropdown-menu p-0">
-                            <div class="dropdown-menu-search">
-                                <input type="text" class="form-control" placeholder="Search users">
-                            </div>
-                            <div class="px-3 pb-3">
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item d-flex align-items-center px-0">
-                                        <div class="mr-2">
-                                            <figure class="avatar avatar-sm">
-                                                <span class="avatar-title bg-info rounded-circle">V</span>
-                                            </figure>
-                                        </div>
-                                        <div>Valentine Maton</div>
-                                        <button type="button" class="btn ml-auto text-primary">Add</button>
-                                    </li>
-                                    <li class="list-group-item d-flex align-items-center px-0">
-                                        <div class="mr-2">
-                                            <figure class="avatar avatar-sm">
-                                                <img src="./dist/media/img/avatar1.jpg"
-                                                     class="rounded-circle" alt="image">
-                                            </figure>
-                                        </div>
-                                        <div>Forest Kroch</div>
-                                        <button type="button" class="btn ml-auto text-primary">Add</button>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Description</label>
-                        <textarea class="form-control" id="description"></textarea>
+                        <textarea class="form-control" id="description" name="description"></textarea>
                     </div>
+
+                <button type="submit" class="btn btn-primary">Create Group</button>
+
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Create Group</button>
-            </div>
+
         </div>
     </div>
 </div>
