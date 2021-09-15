@@ -1,80 +1,80 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CommunicApp - Home</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Favicon -->
+    <link rel="icon" href="./dist/media/img/favicon.png" type="image/png">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+<!-- Google Nunito font -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap" rel="stylesheet">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+<!-- Themify icons -->
+<link href="{{asset('dist/icons/themify/themify-icons.css')}}" rel="stylesheet">
 
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+<!-- Material design icons -->
+<link href="{{asset('dist/icons/materialicons/css/materialdesignicons.min.css')}}" rel="stylesheet">
 
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<!-- Bundle styles -->
+<link rel="stylesheet" href="{{asset('dist/vendor/bundle.css')}}">
+
+<!-- Slick -->
+<link rel="stylesheet" href="{{asset('dist/vendor/slick/slick-theme.css')}}">
+<link rel="stylesheet" href="{{asset('dist/vendor/slick/slick.css')}}">
+
+<!-- Fancybox -->
+<link rel="stylesheet" href="{{asset('dist/vendor/fancybox/jquery.fancybox.min.css')}}" type="text/css"/>
+
+<!-- Intro js -->
+<link rel="stylesheet" href="{{asset('dist/vendor/introjs/introjs.css')}}" type="text/css"/>
+
+<!-- App styles -->
+<link rel="stylesheet" href="{{asset('dist/css/app.min.css')}}">
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+<!-- preloader -->
+<div class="preloader">
+    <img src="{{asset('dist/media/img/logo-2x.png')}}" alt="logo">
+    <p class="lead font-weight-bold text-muted my-5">Loading Tinno Chat App ...</p>
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
+</div>
+<!-- ./ preloader -->
+
+    @yield('content')
+
+<!-- ./ edit profile modal -->
+
+<!-- Bundle scripts -->
+<script src="{{asset('dist/vendor/bundle.js')}}"></script>
+
+<!-- Feather icons -->
+<script src="{{asset('dist/icons/feather/feather.min.js')}}"></script>
+
+<!-- Slick -->
+<script src="{{asset('dist/vendor/slick/slick.min.js')}}"></script>
+
+<!-- Fancybox -->
+<script src="{{asset('dist/vendor/fancybox/jquery.fancybox.min.js')}}"></script>
+
+<!-- Intro js -->
+<script src="{{asset('dist/vendor/introjs/intro.js')}}"></script>
+
+<!-- Jquery Stopwatch -->
+<script src="{{asset('dist/vendor/jquery.stopwatch.js')}}"></script>
+
+<!-- Sweetalert2 -->
+<script src="{{asset('dist/vendor/sweetalert2.js')}}"></script>
+
+<!-- App scripts -->
+<script src="{{asset('dist/js/app.min.js')}}"></script>
+
+<!-- Examples -->
+<script src="{{asset('dist/js/examples.min.js')}}"></script>
 </body>
 </html>
