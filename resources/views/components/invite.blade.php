@@ -11,11 +11,12 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="mb-4">
+                <form class="mb-4" method="POST" action="{{route('send.friend.request')}}">
+                    @csrf
                     <div class="form-group">
                         <label for="invite_emails" class="col-form-label">Email address</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="invite_emails" placeholder="Email address">
+                            <input type="text" class="form-control" id="invite_emails" name="invite_emails" placeholder="Email address" required>
                             <div class="input-group-append">
                                 <button type="button" class="btn btn-success">
                                     <i class="mdi mdi-plus"></i>
@@ -25,12 +26,12 @@
                     </div>
                     <div class="form-group">
                         <label for="invite_topic" class="col-form-label">Invitation topic</label>
-                        <input type="text" class="form-control" id="invite_topic" placeholder="Topic">
+                        <input type="text" class="form-control" id="invite_topic" name="invite_topic" placeholder="Topic" required>
                     </div>
+
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>

@@ -11,32 +11,36 @@
     </div>
     <div class="right-sidebar-content">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item py-3 px-0 d-flex justify-content-between">
-                <div class="d-flex">
-                    <figure class="avatar avatar-state-warning mr-3">
-                        <span class="avatar-title bg-info-bright text-info rounded-circle">
-                            <i class="mdi mdi-server"></i>
-                        </span>
-                    </figure>
-                    <div>
-                        <div>You joined a group</div>
-                        <span class="text-muted small">
-                            <i class="mdi mdi-clock-outline small mr-1"></i> Today
-                        </span>
+            @foreach ($invitations as $item)
+                <li class="list-group-item py-3 px-0 d-flex justify-content-between">
+                    <div class="d-flex">
+                        <figure class="avatar avatar-state-warning mr-3">
+                            <span class="avatar-title bg-info-bright text-info rounded-circle">
+                                <i class="mdi mdi-server"></i>
+                            </span>
+                        </figure>
+                        <div>
+                            <div>{{$item->friend->name}}</div>
+                            <span class="text-muted small">
+                                <i class="mdi mdi-clock-outline small mr-1"></i> {{$item->topic}}
+                            </span>
+                            <br>
+                            <span class="small">{{$item->created_at}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="dropdown">
-                    <a href="#" data-toggle="dropdown">
-                        <i class="mdi mdi-dots-horizontal"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="#" class="dropdown-item">Unread</a>
-                        <a href="#" class="dropdown-item">Detail</a>
-                        <a href="#" class="dropdown-item">Delete</a>
+                    <div class="dropdown">
+                        <a href="#" data-toggle="dropdown">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="/friend/request/{{$item->id}}/1" class="dropdown-item">Accepter</a>
+                            <a href="/friend/request/{{$item->id}}/2" class="dropdown-item">Refuser</a>
+                        </div>
                     </div>
-                </div>
-            </li>
-            <li class="list-group-item py-3 px-0 d-flex justify-content-between">
+                </li>
+            @endforeach
+
+            {{-- <li class="list-group-item py-3 px-0 d-flex justify-content-between">
                 <div class="d-flex">
                     <figure class="avatar avatar-state-warning mr-3">
                         <span class="avatar-title bg-warning-bright text-warning rounded-circle">
@@ -135,7 +139,7 @@
                         <a href="#" class="dropdown-item">Delete</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
         </ul>
     </div>
 </div>

@@ -1008,8 +1008,7 @@
 </div>
 <!-- ./ layout -->
 
-@component('components.notifications')
-@endcomponent
+@include('components.notifications')
 
 @component('components.profile')
 @endcomponent

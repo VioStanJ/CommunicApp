@@ -21,3 +21,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/send/request/friend',[App\Http\Controllers\InvitationController::class,'send'])->name('send.friend.request');
+Route::get('/friend/request/{id}/{status}',[App\Http\Controllers\InvitationController::class,'repond'])->name('repond.friend.request');
