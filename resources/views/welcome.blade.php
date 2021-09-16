@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Tinno - HTML5 Chat App Template</title>
+    <title>CommunicApp</title>
 
     <!-- Favicon -->
     <link rel="icon" href="./dist/media/img/favicon.png" type="image/png">
@@ -36,9 +36,9 @@
 <!-- Navbar -->
 <nav class="navbar fixed-top bg-white navbar-expand-lg navbar-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html">
-            <img src="./dist/media/img/logo-full.png" alt="logo">
-        </a>
+        <h1 class="hero-title" style="height: 20px; font-size : 30px;">
+            <strong><a href="/" style="color : #000; text-decoration : none;">CommunicApp</a></strong>
+        </h1>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -93,11 +93,10 @@
             <div class="col-12 col-lg-5 text-center text-lg-left mb-5 mb-lg-0">
                 <div data-aos="zoom-in-right">
                     <h1 class="hero-title">
-                        <strong>Tinno</strong> is a web <span class="text-primary">chat application template</span>.
+                          <span class="text-primary">CommunicApp  is a chat application </span>
                     </h1>
                     <p class="lead text-muted mb-5 mb-md-8">
-                        <strong>Tinno</strong> is an HTML template created for developing written, audio and video
-                        communication applications. Build your dream applications with advanced components and features.
+                        Une application de messagerie instantannee pour une meilleure communaute. Vivez une nouvelle experience avec l'application CommunicApp, une nouvelle approche de communication.
                     </p>
                     <a href="/login" class="btn btn-primary hover-animate mr-2">
                         Login
