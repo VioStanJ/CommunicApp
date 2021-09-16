@@ -171,20 +171,20 @@ var _this = void 0;
     input.val(input.val() + ' ' + emoji + ' ').focus();
   });
 
-  __document.on('click', '.left-sidebar .list-group .list-group-item', function (e) {
-    $('.chat').addClass('no-message');
-    $('.no-message-container').addClass('d-none');
-    $('.chat-preloader').removeClass('d-none');
-    $('.left-sidebar .list-group .list-group-item').removeClass('active');
-    $(e.currentTarget).addClass('active').removeClass('unread-chat').find('.new-message-count').remove();
-    setTimeout(function () {
-      $('.chat').addClass('open').removeClass('no-message');
-      $('.no-message-container').removeClass('d-none');
-      $('.chat-preloader').addClass('d-none');
-      $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-    }, 500);
-    return false;
-  });
+//   __document.on('click', '.left-sidebar .list-group .list-group-item', function (e) {
+//     $('.chat').addClass('no-message');
+//     $('.no-message-container').addClass('d-none');
+//     $('.chat-preloader').removeClass('d-none');
+//     $('.left-sidebar .list-group .list-group-item').removeClass('active');
+//     $(e.currentTarget).addClass('active').removeClass('unread-chat').find('.new-message-count').remove();
+//     setTimeout(function () {
+//       $('.chat').addClass('open').removeClass('no-message');
+//       $('.no-message-container').removeClass('d-none');
+//       $('.chat-preloader').addClass('d-none');
+//       $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//     }, 500);
+//     return false;
+//   });
 
   __document.on('click', '.example-close-selected-chat', function () {
     return selected_close_chat();

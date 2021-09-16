@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Friend;
 use App\Models\User;
 use DB;
+use App\Models\Group;
+use App\Models\GroupUser;
 
 class HomeController extends Controller
 {
@@ -44,6 +46,13 @@ class HomeController extends Controller
             }
         }
 
-        return view('home',compact(['invitations','friends']));
+        $groups = GroupUser::where('user_id','=',$user->id)->where('status','=',1)->get();
+
+        foreach ($groups as $key => $value) {
+            $value->group = Group::find($value->group_id);
+            $value->members = DB::select('select count(*) as members from group_users where status = 1 and id=:id',['id'=>$value->group_id])[0];
+        }
+
+        return view('home',compact(['invitations','friends','groups']));
     }
 }

@@ -172,7 +172,7 @@
         <div class="left-sidebar-content">
             <ul class="list-group list-group-flush">
                 @foreach ($friends as $item)
-                <li class="list-group-item">
+                <li class="list-group-item" onclick="chat(this,'{{Auth::user()}}','{{$item->user}}')">
                     <div>
                         <figure class="avatar mr-3">
                             <img src="{{$item->user->avatar??'/static/avatar.jpg'}}" class="rounded-circle" alt="image">
@@ -190,11 +190,9 @@
                                         <i class="mdi mdi-dots-horizontal"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">New chat</a>
-                                        <a href="#" data-right-sidebar="user-profile"
-                                           class="dropdown-item">Profile</a>
+                                        <a href="#" class="dropdown-item" onclick="chat(this,'{{Auth::user()}}','{{$item->user}}')">Chatter</a>
                                         <div class="dropdown-divider"></div>
-                                        <a href="#" class="dropdown-item text-danger">Block</a>
+                                        <a href="#" onclick="document.location.href='/friend/request/{{$item->id}}/3'" class="dropdown-item">Bloquer</a>
                                     </div>
                                 </div>
                             </div>
@@ -218,17 +216,19 @@
                             <i class="ti-search"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control" placeholder="Search favorites">
+                    <input type="text" class="form-control" placeholder="Search Group">
                 </div>
             </form>
         </div>
         <div class="left-sidebar-content">
             <ul class="list-group list-group-flush users-list">
+                @foreach ($groups as $item)
                 <li class="list-group-item">
                     <div class="users-list-body">
                         <div>
-                            <h5>Jennica Kindred</h5>
-                            <p>I know how important this file is to you. You can trust me ;)</p>
+                            <h5 class="font-weight-bold">{{$item->group->name}}</h5>
+                            <p class="small text-muted">{{$item->group->topic}}</p>
+                            <span class="small text-warning">Membres ({{$item->members->members??0}})</span>
                         </div>
                         <div class="users-list-action">
                             <div class="action-toggle">
@@ -238,76 +238,14 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a href="#" class="dropdown-item">Open</a>
-                                        <a href="#" class="dropdown-item">Remove favorites</a>
+                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveGroup">Add Members</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </li>
-                <li class="list-group-item">
-                    <div class="users-list-body">
-                        <div>
-                            <h5>Marvin Rohan</h5>
-                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                        </div>
-                        <div class="users-list-action">
-                            <div class="action-toggle">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown" href="#">
-                                        <i class="mdi mdi-dots-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Open</a>
-                                        <a href="#" class="dropdown-item">Remove favorites</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="users-list-body">
-                        <div>
-                            <h5>Frans Hanscombe</h5>
-                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                        </div>
-                        <div class="users-list-action">
-                            <div class="action-toggle">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown" href="#">
-                                        <i class="mdi mdi-dots-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Open</a>
-                                        <a href="#" class="dropdown-item">Remove favorites</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="list-group-item">
-                    <div class="users-list-body">
-                        <div>
-                            <h5>Karl Hubane</h5>
-                            <p>Lorem ipsum dolor sitsdc sdcsdc sdcsdcs</p>
-                        </div>
-                        <div class="users-list-action">
-                            <div class="action-toggle">
-                                <div class="dropdown">
-                                    <a data-toggle="dropdown" href="#">
-                                        <i class="mdi mdi-dots-horizontal"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Open</a>
-                                        <a href="#" class="dropdown-item">Remove favorites</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
     </div>
@@ -408,7 +346,7 @@
                     <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
                 </figure>
                 <div>
-                    <h5>Maribel Mallon</h5>
+                    <h5 id="chat_name">Maribel Mallonxxx</h5>
                     <small class="text-success">Online</small>
                 </div>
             </div>
@@ -983,4 +921,27 @@
 @component('components.edit_profile')
 @endcomponent
 
+@endsection
+
+@section('script')
+    <script>
+        function chat(e,from,to) {
+            document.getElementById('chat_name').innerHTML = JSON.parse(to).name;
+
+        }
+
+        function load(){
+            $('.chat').addClass('no-message');
+            $('.no-message-container').addClass('d-none');
+            $('.chat-preloader').removeClass('d-none');
+            $('.left-sidebar .list-group .list-group-item').removeClass('active');
+            $(e.currentTarget).addClass('active').removeClass('unread-chat').find('.new-message-count').remove();
+            setTimeout(function () {
+            $('.chat').addClass('open').removeClass('no-message');
+            $('.no-message-container').removeClass('d-none');
+            $('.chat-preloader').addClass('d-none');
+            $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+            }, 500);
+        }
+    </script>
 @endsection

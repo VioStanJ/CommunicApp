@@ -51,7 +51,7 @@ class InvitationController extends Controller
     {
         $user = $request->user();
 
-        $friend = Friend::where('id','=',$id)->where('request_to','=',$user->id)->where('status','=',0)->get()->first();
+        $friend = Friend::where('id','=',$id)->get()->first();
 
         if(!isset($friend)){
             return redirect()->back()->withErrors(['Invitation Passée :/ !']);

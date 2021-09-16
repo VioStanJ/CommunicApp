@@ -33,6 +33,10 @@
 
 <!-- App styles -->
 <link rel="stylesheet" href="{{asset('dist/css/app.min.css')}}">
+
+{{-- Toastr --}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 </head>
 <body>
 
@@ -75,6 +79,11 @@
 <script src="{{asset('dist/js/app.min.js')}}"></script>
 
 <!-- Examples -->
-<script src="{{asset('dist/js/examples.min.js')}}"></script>
+<script src="{{asset('dist/js/examples.js')}}"></script>
+
+{{-- Toastr --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+@yield('script')
 </body>
 </html>
