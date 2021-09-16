@@ -21,7 +21,7 @@
     <!-- Landing page styles -->
     <link rel="stylesheet" href="{{asset('dist/css/landing-page.min.css')}}">
 </head>
-<body class="auth" style="background: url({{asset('dist/media/img/auth.jpg')}})">
+<body class="auth" style="background: url({{asset('./img/chat.jpg')}})">
 
 <div class="form-wrapper">
 
