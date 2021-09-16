@@ -472,7 +472,8 @@
 @section('script')
     <script>
 
-        var user_id = 12;
+        var user_id = 0;
+        var last_id = 0;
 
         function chat(e,from,to) {
             document.getElementById('chat_name').innerHTML = JSON.parse(to).name;
@@ -484,7 +485,6 @@
 
         function loadUserChat(from,to) {
             user_id = to.id;
-            console.warn(user_id,"ID");
 
             let request = $.ajax({
                 url : '/get/message/'+user_id,
@@ -494,24 +494,11 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.log("Hooray, it worked!",response.chats);
+                // console.log("Hooray, it worked!",response.chats);
+                $('.messages').empty();
 
                 response.chats.forEach(element => {
-                    if(element.user_from == user_id){
-                        send_message({
-                            type: 'in',
-                            text: element.message,
-                            avatar: to.avatar,
-                            name: to.name
-                        });
-                    }else{
-                        send_message({
-                            type: 'out',
-                            text: element.message,
-                            avatar: from.avatar,
-                            name: "Moi"
-                        });
-                    }
+                    loadMessages(element,from,to);
                 });
             });
 
@@ -522,6 +509,31 @@
                     textStatus, errorThrown
                 );
             });
+
+            setInterval(() => {
+                getLast(from,to,last_id);
+            }, 2000);
+        }
+
+        function loadMessages(element,from,to) {
+            if(element.user_from == user_id){
+                send_message({
+                    type: 'in',
+                    text: element.message,
+                    avatar: to.avatar,
+                    name: to.name,
+                    time: element.created_at
+                });
+            }else{
+                send_message({
+                    type: 'out',
+                    text: element.message,
+                    avatar: from.avatar,
+                    name: "Moi",
+                    time: element.created_at
+                });
+            }
+            last_id = element.id;
         }
 
         function load(){
@@ -557,9 +569,10 @@
                 console.log("Hooray, it worked!",response);
                 send_message({
                     type: 'out',
-                    text: "BLA bLA blA",
-                    avatar: 'avatar9.jpg',
-                    name: 'Matteo Reedy'
+                    text: response.chat.message,
+                    avatar: response.chat.avatar,
+                    name: "Moi",
+                    time: response.chat.created_at
                 });
             });
 
@@ -579,9 +592,39 @@
             $('.messages').append("<div class=\"message-item in in-typing\">\n                <div class=\"message-content\">\n                    <div class=\"message-text\">\n                        <div class=\"writing-animation\">\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>");
             } else {
             $('.messages .message-item.in-typing').remove();
-            $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            Now\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                    <div class=\"dropdown\">\n                        <a href=\"#\" data-toggle=\"dropdown\">\n                            <i class=\"mdi mdi-dots-horizontal\"></i>\n                        </a>\n                        <div class=\"dropdown-menu dropdown-menu-right\">\n                            <a href=\"#\" class=\"dropdown-item\">Reply</a>\n                            <a href=\"#\" class=\"dropdown-item\">Forward</a>\n                            <a href=\"#\" class=\"dropdown-item\">Copy</a>\n                            <a href=\"#\" class=\"dropdown-item\">Starred</a>\n                            <a href=\"#\" class=\"dropdown-item example-delete-message\">Delete</a>\n                        </div>\n                    </div>\n                </div>\n            </div>");
+            $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            "+msg.time+"\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                    <div class=\"dropdown\">\n                        <a href=\"#\" data-toggle=\"dropdown\">\n                            <i class=\"mdi mdi-dots-horizontal\"></i>\n                        </a>\n                        <div class=\"dropdown-menu dropdown-menu-right\">\n                            <a href=\"#\" class=\"dropdown-item\">Reply</a>\n                            <a href=\"#\" class=\"dropdown-item\">Forward</a>\n                            <a href=\"#\" class=\"dropdown-item\">Copy</a>\n                            <a href=\"#\" class=\"dropdown-item\">Starred</a>\n                            <a href=\"#\" class=\"dropdown-item example-delete-message\">Delete</a>\n                        </div>\n                    </div>\n                </div>\n            </div>");
             }
         };
+
+        function getLast(from,to,last) {
+            console.warn('/get/last/message/'+user_id+'/'+last,"LAST");
+            user_id = to.id;
+
+            let request = $.ajax({
+                url : '/get/last/message/'+user_id+'/'+last,
+                type:'get',
+                context: document.body,
+            });
+
+            request.done(function (response, textStatus, jqXHR){
+            // Log a message to the console
+                console.warn(response,'LAST RESPONSE');
+                // $('.messages').empty();
+
+                response.chats.forEach(element => {
+                    // loadMessages(element,from,to);
+                    last_id = element.id;
+                });
+            });
+
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                // Log the error to the console
+                console.error(
+                    "The following error occurred: "+
+                    textStatus, errorThrown
+                );
+            });
+        }
 
     </script>
 @endsection
