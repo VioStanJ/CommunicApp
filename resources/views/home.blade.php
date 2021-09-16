@@ -664,6 +664,8 @@
             document.getElementById('chat_image').style.display = "none";
             console.warn(group);
             document.getElementById('group_id').value = JSON.parse(group).group_id;
+            document.getElementById('chat-footer').style.display = 'block';
+
             is_group = 1;
             group_id = JSON.parse(group).group_id;
             $('.messages').empty();
