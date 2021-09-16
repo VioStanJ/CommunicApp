@@ -17,7 +17,7 @@ class ChatController extends Controller
     {
         $user = $request->user();
 
-        $chats = DB::select("SELECT * from chats where user_from=".$user->id." and user_to=".$id." or user_from=".$id." or user_to=".$user->id." and status=1 order by created_at asc");
+        $chats = DB::select("SELECT tmp.* from (SELECT * from chats where user_from=".$user->id." and user_to=".$id." or user_from=".$id." or user_to=".$user->id." ) as tmp where status=1 order by created_at asc");
 
         return response()->json(['success'=>true,'chats'=>$chats], 200);
     }
@@ -39,6 +39,16 @@ class ChatController extends Controller
             'is_media'=>$request->is_media??0
         ]);
 
+        $chat->avatar = $user->avatar;
+
         return response()->json(['success'=>true,'chat'=>$chat], 200);
+    }
+
+    public function last(Request $request,$id,$last)
+    {
+        $user = $request->user();
+
+        $chats = DB::select('SELECT tmp.* from (SELECT * from chats where user_from='.$user->id.' and user_to='.$id.' or user_from='.$id.' or user_to='.$user->id.' ) as tmp where status=1 and id>'.$last.'');
+        return response()->json(['success'=>true,'chats'=>$chats], 200);
     }
 }
