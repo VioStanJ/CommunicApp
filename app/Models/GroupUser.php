@@ -9,5 +9,5 @@ class GroupUser extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['group_id','user_id','type','status'];
+    protected $fillable = ['group_id','user_id','topic','type','status'];
 }

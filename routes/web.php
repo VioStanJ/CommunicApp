@@ -26,8 +26,15 @@ Route::post('/send/request/friend',[App\Http\Controllers\InvitationController::c
 Route::get('/friend/request/{id}/{status}',[App\Http\Controllers\InvitationController::class,'repond'])->name('repond.friend.request');
 
 Route::post('/create/group',[App\http\Controllers\GroupController::class,'create'])->name('create.group');
+Route::post('/add/user/group',[App\http\Controllers\GroupController::class,'add'])->name('add.group');
+Route::get('/group/request/{id}/{status}',[App\Http\Controllers\GroupController::class,'repond'])->name('repond.group.request');
 
 // Chat
 Route::post('/send/message',[App\Http\Controllers\ChatController::class,'send'])->name('send.message');
 Route::get('/get/message/{id}',[App\Http\Controllers\ChatController::class,'all'])->name('all.message');
 Route::get('/get/last/message/{id}/{last}',[App\Http\Controllers\ChatController::class,'last'])->name('last.message');
+
+// Group
+Route::post('/send/group/message',[App\Http\Controllers\ChatController::class,'sendGroup'])->name('group.send.message');
+Route::get('/get/group/message/{id}',[App\Http\Controllers\ChatController::class,'allGroup'])->name('all.message');
+Route::get('/get/group/last/message/{id}/{last}',[App\Http\Controllers\ChatController::class,'groupLast'])->name('group.last.message');

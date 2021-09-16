@@ -18,6 +18,7 @@ class CreateGroupUsersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('group_id');
             $table->integer('type')->default(2); // 1: Admin    2:Simple User
+            $table->sring('topic')->nullable();
             $table->integer('status')->default(0);
             $table->timestamps();
         });

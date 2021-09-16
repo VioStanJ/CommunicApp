@@ -50,9 +50,24 @@ class HomeController extends Controller
 
         foreach ($groups as $key => $value) {
             $value->group = Group::find($value->group_id);
-            $value->members = DB::select('select count(*) as members from group_users where status = 1 and id=:id',['id'=>$value->group_id])[0];
+            $users = GroupUser::where('user_id','=',$value->group_id)->where('status','=',1)->get();
+            $value->members = DB::select('select count(*) as members from group_users where status = 1 and group_id=:id',['id'=>$value->group_id])[0];
+            
+            $list_users = [];
+            foreach ($users as $key => $value2) {
+                $list_users[$key] = User::find($value2->user_id);
+            } 
+
+            $value->list_users = $list_users[0];
         }
 
-        return view('home',compact(['invitations','friends','groups']));
+
+        $group_invitations = GroupUser::where('user_id','=',$user->id)->where('status','=',0)->get();
+
+        foreach ($group_invitations as $key => $value) {
+            $value->group = Group::find($value->group_id);
+        }
+
+        return view('home',compact(['invitations','friends','groups','group_invitations']));
     }
 }

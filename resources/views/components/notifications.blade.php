@@ -40,6 +40,35 @@
                 </li>
             @endforeach
 
+            @foreach ($group_invitations as $item)
+                <li class="list-group-item py-3 px-0 d-flex justify-content-between">
+                    <div class="d-flex">
+                        <figure class="avatar avatar-state-warning mr-3">
+                            <span class="avatar-title bg-info-bright text-info rounded-circle">
+                                <i class="mdi mdi-server"></i>
+                            </span>
+                        </figure>
+                        <div>
+                            <div>{{$item->group->name}}</div>
+                            <span class="text-muted small">
+                                <i class="mdi mdi-clock-outline small mr-1"></i> {{$item->topic}}
+                            </span>
+                            <br>
+                            <span class="small">{{$item->created_at}}</span>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <a href="#" data-toggle="dropdown">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a href="/group/request/{{$item->id}}/1" class="dropdown-item">Accepter</a>
+                            <a href="/group/request/{{$item->id}}/2" class="dropdown-item">Refuser</a>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
+
             {{-- <li class="list-group-item py-3 px-0 d-flex justify-content-between">
                 <div class="d-flex">
                     <figure class="avatar avatar-state-warning mr-3">

@@ -22,15 +22,15 @@
                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveUsers">Invite users</a>
                     </div>
                 </li>
-                <li>
+                {{-- <li>
                     <a class="active" data-intro-js="2" data-left-sidebar="chats" href="#" data-toggle="tooltip"
                        title="Chats" data-placement="right">
                         <span class="badge badge-warning"></span>
                         <i data-feather="message-circle"></i>
                     </a>
-                </li>
+                </li> --}}
                 <li>
-                    <a data-left-sidebar="friends" href="#" data-toggle="tooltip"
+                    <a class="active" data-left-sidebar="friends" href="#" data-toggle="tooltip"
                        title="Friends" data-placement="right">
                         <span class="badge badge-danger"></span>
                         <i data-feather="user"></i>
@@ -74,7 +74,7 @@
     <!-- ./ navigation -->
 
     <!-- Chat left sidebar -->
-    <div id="chats" class="left-sidebar open">
+    {{-- <div id="chats" class="left-sidebar open">
         <div class="left-sidebar-header">
             <form>
                 <div class="input-group">
@@ -151,11 +151,11 @@
 
             </ul>
         </div>
-    </div>
+    </div> --}}
     <!-- ./ Chat left sidebar -->
 
     <!-- Friends left sidebar -->
-    <div id="friends" class="left-sidebar">
+    <div id="friends" class="left-sidebar open">
         <div class="left-sidebar-header">
             <form>
                 <h4 class="mb-4">Friends</h4>
@@ -223,9 +223,10 @@
         <div class="left-sidebar-content">
             <ul class="list-group list-group-flush users-list">
                 @foreach ($groups as $item)
-                <li class="list-group-item">
+                <li class="list-group-item" onclick="chatGroup(this,'{{$item}}')">
                     <div class="users-list-body">
                         <div>
+
                             <h5 class="font-weight-bold">{{$item->group->name}}</h5>
                             <p class="small text-muted">{{$item->group->topic}}</p>
                             <span class="small text-warning">Membres ({{$item->members->members??0}})</span>
@@ -237,8 +238,8 @@
                                         <i class="mdi mdi-dots-horizontal"></i>
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="#" class="dropdown-item">Open</a>
-                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveGroup">Add Members</a>
+                                        <a href="#" class="dropdown-item" onclick="chatGroup(this,'{{$item->group}}')">Open</a>
+                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveGroup"  onclick="setGroupInvite(this,'{{$item}}')">Add Members</a>
                                     </div>
                                 </div>
                             </div>
@@ -346,8 +347,8 @@
                     <img  id="chat_image" src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
                 </figure>
                 <div>
-                    <h5 id="chat_name">Maribel Mallonxxx</h5>
-                    <small class="text-success" id="chat_info">Online</small>
+                    <h5 id="chat_name"></h5>
+                    <small class="text-success" id="chat_info"></small>
                 </div>
             </div>
             <div class="chat-header-action">
@@ -376,7 +377,7 @@
 {{-- ALL MESSAGES --}}
             </div>
         </div>
-        <div class="chat-footer" data-intro-js="6">
+        <div class="chat-footer" id="chat-footer" data-intro-js="6">
             <form class="d-flex" id="send_message">
                 @csrf
                 <div class="dropdown">
@@ -439,6 +440,8 @@
                     </div>
                 </div>
                 <input type="hidden" name="to" id="user_to">
+                <input type="hidden" name="group_id" id="group_id">
+                <input type="hidden" name="user_id" value="{{Auth::user()->id}}"/>
                 <input type="text" class="form-control form-control-main" id="chat_message" name="message" placeholder="Write a message.">
                 <div>
                     <button class="btn btn-primary ml-2 btn-floating" type="submit">
@@ -467,19 +470,32 @@
 @component('components.edit_profile')
 @endcomponent
 
+
+@component('components.invite_group')
+@endcomponent
+
 @endsection
 
 @section('script')
     <script>
 
+        var is_group = 0;
+        var last_group_id = 0;
+        var group_id = 0;
+
         var user_id = 0;
         var last_id = 0;
-
+        document.getElementById('chat_image').style.display = "none";
+        document.getElementById('chat-footer').style.display = 'none';
+        
         function chat(e,from,to) {
             document.getElementById('chat_name').innerHTML = JSON.parse(to).name;
             document.getElementById('chat_info').innerHTML = JSON.parse(to).email;
+            document.getElementById('chat_image').style.display = "block";
             document.getElementById('chat_image').src = JSON.parse(to).avatar;
             document.getElementById('user_to').value = JSON.parse(to).id;
+            document.getElementById('chat-footer').style.display = 'block';
+            $('.messages').empty();
             loadUserChat(JSON.parse(from),JSON.parse(to));
         }
 
@@ -555,10 +571,16 @@
 
             var $form = $(this);
 
+            if(is_group == 0){
+                url = "/send/message";
+            }else{
+                url = "/send/group/message";
+            }
+
             var serializedData = $form.serialize();
 
             var request = $.ajax({
-                url: "/send/message",
+                url: url,
                 type:"post",
                 context: document.body,
                 data : serializedData
@@ -585,12 +607,14 @@
             $('.messages').append("<div class=\"message-item in in-typing\">\n                <div class=\"message-content\">\n                    <div class=\"message-text\">\n                        <div class=\"writing-animation\">\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>");
             } else {
             $('.messages .message-item.in-typing').remove();
-            $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            "+msg.time+"\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                    <div class=\"dropdown\">\n                        <a href=\"#\" data-toggle=\"dropdown\">\n                            <i class=\"mdi mdi-dots-horizontal\"></i>\n                        </a>\n                        <div class=\"dropdown-menu dropdown-menu-right\">\n                            <a href=\"#\" class=\"dropdown-item\">Reply</a>\n                            <a href=\"#\" class=\"dropdown-item\">Forward</a>\n                            <a href=\"#\" class=\"dropdown-item\">Copy</a>\n                            <a href=\"#\" class=\"dropdown-item\">Starred</a>\n                            <a href=\"#\" class=\"dropdown-item example-delete-message\">Delete</a>\n                        </div>\n                    </div>\n                </div>\n            </div>");
+            $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            "+msg.time+"\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                                    </div>\n            </div>");
             }
         };
 
         function getLast(from,to,last) {
-            let url = '/get/last/message/'+user_id+'/'+last;
+            let url = '';
+
+            url = '/get/last/message/'+user_id+'/'+last;
 
             console.warn(url,"LAST");
             console.warn(user_id,"User ID");
@@ -620,5 +644,135 @@
             });
         }
 
+    </script>
+
+    <script>
+                
+        function setGroupInvite(e,group) {
+            let groupe = JSON.parse(group);
+            document.getElementById('group_id').value = groupe.group_id;
+            document.getElementById('total_group').innerHTML = "Total "+groupe.members.members;
+            console.warn(groupe,"GROUP");            
+            document.getElementById('chat-footer').style.display = 'block';
+
+            if(groupe.type == 1){
+                document.getElementById('list_groups').style.display = 'block';
+            }else{
+                document.getElementById('list_groups').style.display = 'none';
+            }
+        }
+
+        function chatGroup(e,group) {
+            document.getElementById('chat_name').innerHTML = JSON.parse(group).group.name;
+            document.getElementById('chat_info').innerHTML = JSON.parse(group).group.topic;
+            document.getElementById('chat_image').style.display = "none";
+            console.warn(group);
+            document.getElementById('group_id').value = JSON.parse(group).group_id;
+            is_group = 1;
+            group_id = JSON.parse(group).group_id;
+            $('.messages').empty();
+            loadGroupChat(JSON.parse(group));
+
+            setInterval(() => {
+                getLastGroup();
+            }, 2000);
+        }
+
+        function loadGroupChat(group) {
+            let request = $.ajax({
+                url : '/get/group/message/'+group.group_id,
+                type:'get',
+                context: document.body,
+            });
+
+            request.done(function (response, textStatus, jqXHR){
+            // Log a message to the console
+                console.log("Hooray, it worked!",response.chats);
+                $('.messages').empty();
+
+                response.chats.forEach(element => {
+                console.warn('f : '+element.from,'u : '+response.user.id);
+
+                    if(element.from != response.user.id){
+                        send_message({
+                            type: 'in',
+                            text: element.message,
+                            avatar: element.user.avatar,
+                            name: element.user.name,
+                            time: element.created_at
+                        });
+                    }else{
+                        send_message({
+                            type: 'out',
+                            text: element.message,
+                            avatar: element.user.avatar,
+                            name: "Moi",
+                            time: element.created_at
+                        });
+                    }
+                    last_group_id = element.id;
+                });
+            });
+
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                // Log the error to the console
+                console.error(
+                    "The following error occurred: "+
+                    textStatus, errorThrown
+                );
+            });
+        }
+
+        function getLastGroup() {
+            let url = '';
+
+        
+                url = '/get/group/last/message/'+group_id+'/'+last_group_id;
+            
+
+            console.warn(url,"LAST");
+            console.warn(user_id,"User ID");
+            // user_id = to.id;
+
+            let request = $.ajax({
+                url : url,
+                type:'get',
+                context: document.body,
+            });
+
+            request.done(function (response, textStatus, jqXHR){
+            // Log a message to the console
+                console.warn(response,'LAST RESPO0NSE');
+
+                response.chats.forEach(element => {
+                    if(element.from != response.user.id){
+                        send_message({
+                            type: 'in',
+                            text: element.message,
+                            avatar: element.user.avatar,
+                            name: element.user.name,
+                            time: element.created_at
+                        });
+                    }else{
+                        send_message({
+                            type: 'out',
+                            text: element.message,
+                            avatar: element.user.avatar,
+                            name: "Moi",
+                            time: element.created_at
+                        });
+                    }
+                    last_group_id = element.id;
+                });
+            });
+
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                // Log the error to the console
+                console.error(
+                    "The following error occurred: "+
+                    textStatus, errorThrown
+                );
+            });
+        }
     </script>
 @endsection

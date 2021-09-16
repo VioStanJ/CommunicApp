@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Group;
 use App\Models\GroupUser;
+use App\Models\user;
 
 class GroupController extends Controller
 {
@@ -35,6 +36,46 @@ class GroupController extends Controller
             'status'=>1
         ]);
 
+        return redirect()->back();
+    }
+
+    public function add(Request $request)
+    {
+        $request->validate([
+            'group_id'=>'required',
+            'topic'=>'required',
+            'email'=>'required|email'
+        ]);
+
+        $user = User::where('email','=',$request->email)->get()->first();
+
+        if(!isset($user)){
+            return redirect()->back()->withErrors(['Utilisateur non trouve !']);
+        }
+
+        GroupUser::create([
+            'group_id'=>$request->group_id,
+            'user_id'=>$user->id,
+            'type'=>2,
+            'topic'=>$request->topic
+        ]);
+
+        return redirect()->back();
+    }
+
+    public function repond(Request $request,$id,$status)
+    {
+        $user = $request->user();
+
+        $friend = GroupUser::where('id','=',$id)->get()->first();
+
+        if(!isset($friend)){
+            return redirect()->back()->withErrors(['Invitation Passée :/ !']);
+        }
+
+        $friend->status = $status;
+
+        $friend->save();
         return redirect()->back();
     }
 }
