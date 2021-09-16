@@ -428,15 +428,11 @@
                 </div>
                 <div class="dropdown">
                     <button class="btn btn-light-info btn-floating mr-3" data-toggle="dropdown" title="Emoji"
-                            type="button">
+                            type="button" onclick="openFile(this)">
                         <i class="mdi mdi-plus"></i>
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Location</a>
-                        <a href="#" class="dropdown-item">Attach</a>
-                        <a href="#" class="dropdown-item">Document</a>
                         <a href="#" class="dropdown-item">File</a>
-                        <a href="#" class="dropdown-item">Video</a>
                     </div>
                 </div>
                 <input type="hidden" name="to" id="user_to">
@@ -773,6 +769,29 @@
                     textStatus, errorThrown
                 );
             });
+        }
+
+        function openFile(e) {
+            var input = document.createElement('input');
+            input.type = 'file';
+            input.click();
+
+            input.onchange = e => { 
+
+                // getting a hold of the file reference
+                var file = e.target.files[0]; 
+
+                // setting up the reader
+                var reader = new FileReader();
+                reader.readAsText(file,'UTF-8');
+
+                // here we tell the reader what to do when it's done reading...
+                reader.onload = readerEvent => {
+                var content = readerEvent.target.result; // this is the content!
+                console.log( content );
+            }
+            }
+
         }
     </script>
 @endsection
