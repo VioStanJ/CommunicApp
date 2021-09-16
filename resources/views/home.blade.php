@@ -597,8 +597,11 @@
         };
 
         function getLast(from,to,last) {
-            console.warn('/get/last/message/'+user_id+'/'+last,"LAST");
-            user_id = to.id;
+            let url = '/get/last/message/'+user_id+'/'+last;
+
+            console.warn(url,"LAST");
+            console.warn(user_id,"User ID");
+            // user_id = to.id;
 
             let request = $.ajax({
                 url : '/get/last/message/'+user_id+'/'+last,
@@ -608,7 +611,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.warn(response,'LAST RESPONSE');
+                console.warn(response,'LAST RESPO0NSE');
                 // $('.messages').empty();
 
                 response.chats.forEach(element => {
@@ -617,13 +620,13 @@
                 });
             });
 
-            request.fail(function (jqXHR, textStatus, errorThrown){
-                // Log the error to the console
-                console.error(
-                    "The following error occurred: "+
-                    textStatus, errorThrown
-                );
-            });
+            // request.fail(function (jqXHR, textStatus, errorThrown){
+            //     // Log the error to the console
+            //     console.error(
+            //         "The following error occurred: "+
+            //         textStatus, errorThrown
+            //     );
+            // });
         }
 
     </script>
