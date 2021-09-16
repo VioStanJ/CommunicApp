@@ -29,3 +29,4 @@ Route::post('/create/group',[App\http\Controllers\GroupController::class,'create
 
 // Chat
 Route::post('/send/message',[App\Http\Controllers\ChatController::class,'send'])->name('send.message');
+Route::get('/get/message/{id}',[App\Http\Controllers\ChatController::class,'all'])->name('all.message');

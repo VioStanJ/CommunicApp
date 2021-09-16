@@ -373,463 +373,7 @@
         </div>
         <div class="chat-body">
             <div class="messages">
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">10:12 PM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">Hello, Blondy Neeson 😃</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-content">
-                        <div class="message-text">How do you feel today? I want to ask you something.</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item out">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Matteo Reedy</h5>
-                            <div class="time">01:20 PM <i class="mdi mdi-check-all text-info ml-1"></i></div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">
-                            Hello 😃
-                            <br>
-                            <br>
-                            All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as
-                            necessary, making this the first true generator on the Internet. It uses a dictionary of
-                            over 200 Latin words, combined with a handful of model sentence structures, to generate
-                            Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free
-                            from repetition, injected humour, or non-characteristic words etc.
-                        </div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">10:43 AM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <audio controls>
-                            <source src="https://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
-                            <source src="https://www.w3schools.com/tags/horse.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item out">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Matteo Reedy</h5>
-                            <div class="time">
-                                10:43 AM
-                                <i class="mdi mdi-check-all text-info ml-1"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <audio controls>
-                            <source src="https://www.w3schools.com/tags/horse.ogg" type="audio/ogg">
-                            <source src="https://www.w3schools.com/tags/horse.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                        </audio>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item out">
-                    <div class="message-content">
-                        <div class="message-text">You are good ❤❤</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">11:59 PM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">I want to send you a file.</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-content message-file">
-                        <div class="message-text d-flex">
-                            <div class="file-icon">
-                                <i class="mdi mdi-file-pdf-box-outline"></i>
-                            </div>
-                            <div>
-                                <div>test-filename.pdf <small class="text-muted small">(50KB)</small></div>
-                                <ul class="list-inline mt-2">
-                                    <li class="list-inline-item mb-0">
-                                        <a href="#" class="btn btn-sm btn-light-success btn-floating" title="View">
-                                            <i class="mdi mdi-link"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item mb-0">
-                                        <a href="#" class="btn btn-sm btn-light-success btn-floating"
-                                           title="Download">
-                                            <i class="mdi mdi-download"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item messages-divider sticky-top" data-label="Yesterday"></div>
-                <div class="message-item out">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Matteo Reedy</h5>
-                            <div class="time">07:45 AM <i class="mdi mdi-check-all text-info ml-1"></i></div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">Thank you so much. These files are very important to me. I guess
-                            you didn't make any changes
-                            to these files. So I need the original versions of these files. Thank you very much
-                            again.
-                        </div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">07:15 AM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">I'm about to send the other file now.</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item out">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Matteo Reedy</h5>
-                            <div class="time">07:45 AM <i class="mdi mdi-check-all text-info ml-1"></i></div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div>
-                            <div class="message-content-images">
-                                <a href="./dist/media/img/image1.jpg" data-fancybox="images">
-                                    <img src="./dist/media/img/image1.jpg" alt="image">
-                                </a>
-                                <a href="./dist/media/img/image2.jpg" data-fancybox="images">
-                                    <img src="./dist/media/img/image2.jpg" alt="image">
-                                </a>
-                                <a href="./dist/media/img/image3.jpg" data-fancybox="images">
-                                    <img src="./dist/media/img/image3.jpg" alt="image">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">08:00 AM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">I thank you. We are glad to help you. 😃</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item out">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar9.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Matteo Reedy</h5>
-                            <div class="time">09:23 AM <i class="mdi mdi-check-all text-info ml-1"></i></div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A,
-                            exercitationem inventore
-                            quaerat quos repellendus sunt? Assumenda dolor earum optio quis?
-                        </div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item out">
-                    <div class="message-content">
-                        <div class="message-text">😃 😃 ❤ ❤</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">08:00 AM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="video-block">
-                            <a data-fancybox
-                               href="https://www.youtube.com/watch?v=c5nhWy7Zoxg&list=PLmUBwxvdqHq-2La24tH5J55DwBdUwZnoI&ab_channel=FrameStockFootages">
-                                <i class="mdi mdi-play-circle-outline"></i>
-                            </a>
-                        </div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item messages-divider" data-label="1 message unread"></div>
-                <div class="message-item in">
-                    <div class="message-avatar">
-                        <figure class="avatar avatar-sm">
-                            <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
-                        </figure>
-                        <div>
-                            <h5>Maribel Mallon</h5>
-                            <div class="time">11:05 AM</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <div class="message-text">I sent you all the files. Good luck with 😃</div>
-                        <div class="dropdown">
-                            <a href="#" data-toggle="dropdown">
-                                <i class="mdi mdi-dots-horizontal"></i>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item">Reply</a>
-                                <a href="#" class="dropdown-item">Forward</a>
-                                <a href="#" class="dropdown-item">Copy</a>
-                                <a href="#" class="dropdown-item">Starred</a>
-                                <a href="#" class="dropdown-item example-delete-message">Delete</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="message-item in in-typing">
-                    <div class="message-content">
-                        <div class="message-text">
-                            <div class="writing-animation">
-                                <div class="writing-animation-line"></div>
-                                <div class="writing-animation-line"></div>
-                                <div class="writing-animation-line"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{-- ALL MESSAGES --}}
             </div>
         </div>
         <div class="chat-footer" data-intro-js="6">
@@ -895,7 +439,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="to" id="user_to">
-                <input type="text" class="form-control form-control-main" name="message" placeholder="Write a message.">
+                <input type="text" class="form-control form-control-main" id="chat_message" name="message" placeholder="Write a message.">
                 <div>
                     <button class="btn btn-primary ml-2 btn-floating" type="submit">
                         <i class="mdi mdi-send"></i>
@@ -935,12 +479,49 @@
             document.getElementById('chat_info').innerHTML = JSON.parse(to).email;
             document.getElementById('chat_image').src = JSON.parse(to).avatar;
             document.getElementById('user_to').value = JSON.parse(to).id;
-            loadUserChat(JSON.parse(to).id);
+            loadUserChat(JSON.parse(from),JSON.parse(to));
         }
 
-        function loadUserChat(id) {
-            user_id = id;
+        function loadUserChat(from,to) {
+            user_id = to.id;
             console.warn(user_id,"ID");
+
+            let request = $.ajax({
+                url : '/get/message/'+user_id,
+                type:'get',
+                context: document.body,
+            });
+
+            request.done(function (response, textStatus, jqXHR){
+            // Log a message to the console
+                console.log("Hooray, it worked!",response.chats);
+
+                response.chats.forEach(element => {
+                    if(element.user_from == user_id){
+                        send_message({
+                            type: 'in',
+                            text: element.message,
+                            avatar: to.avatar,
+                            name: to.name
+                        });
+                    }else{
+                        send_message({
+                            type: 'out',
+                            text: element.message,
+                            avatar: from.avatar,
+                            name: "Moi"
+                        });
+                    }
+                });
+            });
+
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                // Log the error to the console
+                console.error(
+                    "The following error occurred: "+
+                    textStatus, errorThrown
+                );
+            });
         }
 
         function load(){
@@ -974,6 +555,12 @@
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
                 console.log("Hooray, it worked!",response);
+                send_message({
+                    type: 'out',
+                    text: "BLA bLA blA",
+                    avatar: 'avatar9.jpg',
+                    name: 'Matteo Reedy'
+                });
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown){
@@ -983,72 +570,18 @@
                     textStatus, errorThrown
                 );
             });
+
+            document.getElementById('chat_message').value = "";
         });
 
-//         (function ($) {
-//   var __document = $(document);
-//         __document.on('submit', '.chat .chat-footer form', function (e) {
-//             e.preventDefault();
-//             var input = $(e.target).find('input[type=text].form-control-main');
-//             var message = input.val();
-//             message = $.trim(message);
+        var send_message = function send_message(msg) {
+            if (msg.type === 'in-typing') {
+            $('.messages').append("<div class=\"message-item in in-typing\">\n                <div class=\"message-content\">\n                    <div class=\"message-text\">\n                        <div class=\"writing-animation\">\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>");
+            } else {
+            $('.messages .message-item.in-typing').remove();
+            $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            Now\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                    <div class=\"dropdown\">\n                        <a href=\"#\" data-toggle=\"dropdown\">\n                            <i class=\"mdi mdi-dots-horizontal\"></i>\n                        </a>\n                        <div class=\"dropdown-menu dropdown-menu-right\">\n                            <a href=\"#\" class=\"dropdown-item\">Reply</a>\n                            <a href=\"#\" class=\"dropdown-item\">Forward</a>\n                            <a href=\"#\" class=\"dropdown-item\">Copy</a>\n                            <a href=\"#\" class=\"dropdown-item\">Starred</a>\n                            <a href=\"#\" class=\"dropdown-item example-delete-message\">Delete</a>\n                        </div>\n                    </div>\n                </div>\n            </div>");
+            }
+        };
 
-//             data = {id:user_id,message:message,t};
-
-//             console.warn(data,"DATA");
-
-//             var request = $.ajax({
-//                 url: "/send/message",
-//                 type:"post",
-//                 context: document.body,
-//                 data : data
-//             });
-
-//             request.done(function (response, textStatus, jqXHR){
-//             // Log a message to the console
-//                 console.log("Hooray, it worked!",response);
-//             });
-
-//             request.fail(function (jqXHR, textStatus, errorThrown){
-//                 // Log the error to the console
-//                 console.error(
-//                     "The following error occurred: "+
-//                     textStatus, errorThrown
-//                 );
-//             });
-
-//     // if (message) {
-//     //   send_message({
-//     //     type: 'out',
-//     //     text: message,
-//     //     avatar: 'avatar9.jpg',
-//     //     name: 'Matteo Reedy'
-//     //   });
-//     //   input.val('');
-//     //   $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-//     //   setTimeout(function () {
-//     //     send_message({
-//     //       type: 'in-typing',
-//     //       text: 'Hi, do you like this template?',
-//     //       avatar: 'avatar2.jpg',
-//     //       name: 'Maribel Mallon'
-//     //     });
-//     //     $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-//     //   }, 1000);
-//     //   setTimeout(function () {
-//     //     send_message({
-//     //       type: 'in',
-//     //       text: 'Hi, do you like this template?',
-//     //       avatar: 'avatar6.jpg',
-//     //       name: 'Maribel Mallon'
-//     //     });
-//     //     $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-//     //   }, 3000);
-//     // } else {
-//     //   input.focus();
-//     // }
-//   });
-
-// })(jQuery);
     </script>
 @endsection

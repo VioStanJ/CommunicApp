@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Chat;
+use DB;
 
 class ChatController extends Controller
 {
@@ -12,11 +13,13 @@ class ChatController extends Controller
         $this->middleware('auth');
     }
 
-    public function getAll(Request $request,$id)
+    public function all(Request $request,$id)
     {
         $user = $request->user();
 
-        // $chats = Chat::where('from','')
+        $chats = DB::select("SELECT * from chats where user_from=".$user->id." and user_to=".$id." or user_from=".$id." or user_to=".$user->id." and status=1 order by created_at asc");
+
+        return response()->json(['success'=>true,'chats'=>$chats], 200);
     }
 
     public function send(Request $request)
