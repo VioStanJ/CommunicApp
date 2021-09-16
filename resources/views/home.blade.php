@@ -343,11 +343,11 @@
         <div class="chat-header">
             <div class="chat-header-user">
                 <figure class="avatar avatar-state-success">
-                    <img src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
+                    <img  id="chat_image" src="./dist/media/img/avatar6.jpg" class="rounded-circle" alt="image">
                 </figure>
                 <div>
                     <h5 id="chat_name">Maribel Mallonxxx</h5>
-                    <small class="text-success">Online</small>
+                    <small class="text-success" id="chat_info">Online</small>
                 </div>
             </div>
             <div class="chat-header-action">
@@ -833,7 +833,8 @@
             </div>
         </div>
         <div class="chat-footer" data-intro-js="6">
-            <form class="d-flex">
+            <form class="d-flex" id="send_message">
+                @csrf
                 <div class="dropdown">
                     <button class="btn btn-light-info btn-floating mr-3" data-toggle="dropdown" title="Emoji"
                             type="button">
@@ -893,7 +894,8 @@
                         <a href="#" class="dropdown-item">Video</a>
                     </div>
                 </div>
-                <input type="text" class="form-control form-control-main" placeholder="Write a message.">
+                <input type="hidden" name="to" id="user_to">
+                <input type="text" class="form-control form-control-main" name="message" placeholder="Write a message.">
                 <div>
                     <button class="btn btn-primary ml-2 btn-floating" type="submit">
                         <i class="mdi mdi-send"></i>
@@ -925,9 +927,20 @@
 
 @section('script')
     <script>
+
+        var user_id = 12;
+
         function chat(e,from,to) {
             document.getElementById('chat_name').innerHTML = JSON.parse(to).name;
+            document.getElementById('chat_info').innerHTML = JSON.parse(to).email;
+            document.getElementById('chat_image').src = JSON.parse(to).avatar;
+            document.getElementById('user_to').value = JSON.parse(to).id;
+            loadUserChat(JSON.parse(to).id);
+        }
 
+        function loadUserChat(id) {
+            user_id = id;
+            console.warn(user_id,"ID");
         }
 
         function load(){
@@ -943,5 +956,99 @@
             $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
             }, 500);
         }
+
+        $("#send_message").submit(function(e){
+            e.preventDefault();
+
+            var $form = $(this);
+
+            var serializedData = $form.serialize();
+
+            var request = $.ajax({
+                url: "/send/message",
+                type:"post",
+                context: document.body,
+                data : serializedData
+            });
+
+            request.done(function (response, textStatus, jqXHR){
+            // Log a message to the console
+                console.log("Hooray, it worked!",response);
+            });
+
+            request.fail(function (jqXHR, textStatus, errorThrown){
+                // Log the error to the console
+                console.error(
+                    "The following error occurred: "+
+                    textStatus, errorThrown
+                );
+            });
+        });
+
+//         (function ($) {
+//   var __document = $(document);
+//         __document.on('submit', '.chat .chat-footer form', function (e) {
+//             e.preventDefault();
+//             var input = $(e.target).find('input[type=text].form-control-main');
+//             var message = input.val();
+//             message = $.trim(message);
+
+//             data = {id:user_id,message:message,t};
+
+//             console.warn(data,"DATA");
+
+//             var request = $.ajax({
+//                 url: "/send/message",
+//                 type:"post",
+//                 context: document.body,
+//                 data : data
+//             });
+
+//             request.done(function (response, textStatus, jqXHR){
+//             // Log a message to the console
+//                 console.log("Hooray, it worked!",response);
+//             });
+
+//             request.fail(function (jqXHR, textStatus, errorThrown){
+//                 // Log the error to the console
+//                 console.error(
+//                     "The following error occurred: "+
+//                     textStatus, errorThrown
+//                 );
+//             });
+
+//     // if (message) {
+//     //   send_message({
+//     //     type: 'out',
+//     //     text: message,
+//     //     avatar: 'avatar9.jpg',
+//     //     name: 'Matteo Reedy'
+//     //   });
+//     //   input.val('');
+//     //   $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//     //   setTimeout(function () {
+//     //     send_message({
+//     //       type: 'in-typing',
+//     //       text: 'Hi, do you like this template?',
+//     //       avatar: 'avatar2.jpg',
+//     //       name: 'Maribel Mallon'
+//     //     });
+//     //     $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//     //   }, 1000);
+//     //   setTimeout(function () {
+//     //     send_message({
+//     //       type: 'in',
+//     //       text: 'Hi, do you like this template?',
+//     //       avatar: 'avatar6.jpg',
+//     //       name: 'Maribel Mallon'
+//     //     });
+//     //     $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//     //   }, 3000);
+//     // } else {
+//     //   input.focus();
+//     // }
+//   });
+
+// })(jQuery);
     </script>
 @endsection

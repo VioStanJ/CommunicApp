@@ -127,43 +127,43 @@ var _this = void 0;
     }
   };
 
-  __document.on('submit', '.chat .chat-footer form', function (e) {
-    e.preventDefault();
-    var input = $(e.target).find('input[type=text].form-control-main');
-    var message = input.val();
-    message = $.trim(message);
+//   __document.on('submit', '.chat .chat-footer form', function (e) {
+//     e.preventDefault();
+//     var input = $(e.target).find('input[type=text].form-control-main');
+//     var message = input.val();
+//     message = $.trim(message);
 
-    if (message) {
-      send_message({
-        type: 'out',
-        text: message,
-        avatar: 'avatar9.jpg',
-        name: 'Matteo Reedy'
-      });
-      input.val('');
-      $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-      setTimeout(function () {
-        send_message({
-          type: 'in-typing',
-          text: 'Hi, do you like this template?',
-          avatar: 'avatar2.jpg',
-          name: 'Maribel Mallon'
-        });
-        $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-      }, 1000);
-      setTimeout(function () {
-        send_message({
-          type: 'in',
-          text: 'Hi, do you like this template?',
-          avatar: 'avatar6.jpg',
-          name: 'Maribel Mallon'
-        });
-        $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
-      }, 3000);
-    } else {
-      input.focus();
-    }
-  });
+//     if (message) {
+//       send_message({
+//         type: 'out',
+//         text: message,
+//         avatar: 'avatar9.jpg',
+//         name: 'Matteo Reedy'
+//       });
+//       input.val('');
+//       $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//       setTimeout(function () {
+//         send_message({
+//           type: 'in-typing',
+//           text: 'Hi, do you like this template?',
+//           avatar: 'avatar2.jpg',
+//           name: 'Maribel Mallon'
+//         });
+//         $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//       }, 1000);
+//       setTimeout(function () {
+//         send_message({
+//           type: 'in',
+//           text: 'Hi, do you like this template?',
+//           avatar: 'avatar6.jpg',
+//           name: 'Maribel Mallon'
+//         });
+//         $('.chat .chat-body').scrollTop($('.chat .chat-body')[0].scrollHeight);
+//       }, 3000);
+//     } else {
+//       input.focus();
+//     }
+//   });
 
   __document.on('click', '.chat-emojis ul li', function () {
     var emoji = $(this).text();

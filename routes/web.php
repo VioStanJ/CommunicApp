@@ -26,3 +26,6 @@ Route::post('/send/request/friend',[App\Http\Controllers\InvitationController::c
 Route::get('/friend/request/{id}/{status}',[App\Http\Controllers\InvitationController::class,'repond'])->name('repond.friend.request');
 
 Route::post('/create/group',[App\http\Controllers\GroupController::class,'create'])->name('create.group');
+
+// Chat
+Route::post('/send/message',[App\Http\Controllers\ChatController::class,'send'])->name('send.message');
