@@ -17,7 +17,8 @@ class CreateFriendsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('request_from');
             $table->unsignedBigInteger('request_to');
-            $table->integer('status')->default(1);
+            $table->string('topic')->nullable();
+            $table->integer('status')->default(0); // 0:Request     1:Amis    2:Refuser   3:Blocker
             $table->timestamps();
         });
     }

@@ -9,5 +9,5 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','status'];
+    protected $fillable = ['name','topic','created_by','status'];
 }

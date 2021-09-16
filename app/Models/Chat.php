@@ -9,5 +9,5 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['from','to','message','is_media','link','status'];
+    protected $fillable = ['user_from','user_to','message','is_media','link','status'];
 }

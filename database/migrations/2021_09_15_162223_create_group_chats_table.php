@@ -20,6 +20,7 @@ class CreateGroupChatsTable extends Migration
             $table->string('message');
             $table->boolean('is_media')->default(false);
             $table->string('link')->nullable();
+            $table->string('topic')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();
         });

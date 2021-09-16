@@ -15,8 +15,8 @@ class CreateChatsTable extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('from');
-            $table->unsignedBigInteger('to');
+            $table->unsignedBigInteger('user_from');
+            $table->unsignedBigInteger('user_to');
             $table->string('message');
             $table->boolean('is_media')->default(false);
             $table->string('link')->nullable();

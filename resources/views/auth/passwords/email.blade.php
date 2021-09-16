@@ -1,47 +1,60 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CommunicApp - Reset Password</title>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+    <!-- Favicon -->
+    <link rel="icon" href="./dist/media/img/favicon.png" type="image/png">
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:600,700&display=swap" rel="stylesheet">
 
-                    <form method="POST" action="{{ route('password.email') }}">
-                        @csrf
+    <!-- Material design icons -->
+    <link href="{{asset('dist/icons/materialicons/css/materialdesignicons.min.css')}}" rel="stylesheet">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+    <!-- Bundle Styles -->
+    <link rel="stylesheet" href="{{asset('dist/vendor/bundle.css')}}')}}">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <!-- Landing page styles -->
+    <link rel="stylesheet" href="{{asset('dist/css/landing-page.min.css')}}">
+</head>
+<body class="auth" style="background: url({{asset('dist/media/img/auth.jpg')}})">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+<div class="form-wrapper">
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <!-- logo -->
+    <div class="logo my-5">
+        <img src="{{asset('dist/media/img/logo-full-2x.png')}}" alt="logo">
     </div>
+    <!-- ./ logo -->
+
+    <h5>Reset password</h5>
+
+    <!-- form -->
+    <form method="POST" action="{{ route('password.update') }}">
+        @csrf
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email" required autofocus>
+        </div>
+        <button class="btn btn-primary">Submit</button>
+        <div class="my-5">
+            <p>Take a different action.</p>
+            <a href="/register">Sign up now!</a>
+            or
+            <a href="/login">sign in now!</a>
+        </div>
+    </form>
+    <!-- ./ form -->
+
 </div>
-@endsection
+
+<!-- Bundle -->
+<script src="{{asset('dist/vendor/bundle.js')}}"></script>
+
+<!-- Landing page scripts -->
+<script src="{{asset('dist/js/landing-page.min.js')}}"></script>
+</body>
+</html>
