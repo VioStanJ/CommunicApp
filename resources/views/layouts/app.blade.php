@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="{{asset('dist/css/app.min.css')}}">
 
 {{-- Toastr --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" href="{{asset('css/toastr.min.css')}}">
 
 </head>
 <body>
@@ -83,6 +83,19 @@
 
 {{-- Toastr --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script src="{{asset('js/toastr.min.js')}}"></script>
+
+<script>
+    @if($errors->any())
+        @foreach($errors->all() as $error)
+              toastr.error('{{ $error }}','Error',{
+                  closeButton:true,
+                  progressBar:true,
+               });
+        @endforeach
+    @endif
+</script>
 
 @yield('script')
 </body>
