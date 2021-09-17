@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\VerifyCode;
 use App\Mail\ResetAccount;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class ResetEmailController extends Controller
 {
