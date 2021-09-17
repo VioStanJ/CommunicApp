@@ -447,6 +447,7 @@
             </form>
         </div>
     </div>
+
     <!-- ./ chat -->
 
 </div>
@@ -584,7 +585,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.log("Hooray, it worked!",response);
+                // console.log("Hooray, it worked!",response);
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown){
@@ -612,8 +613,8 @@
 
             url = '/get/last/message/'+user_id+'/'+last;
 
-            console.warn(url,"LAST");
-            console.warn(user_id,"User ID");
+            // console.warn(url,"LAST");
+            // console.warn(user_id,"User ID");
             // user_id = to.id;
 
             let request = $.ajax({
@@ -624,7 +625,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.warn(response,'LAST RESPO0NSE');
+                // console.warn(response,'LAST RESPO0NSE');
 
                 response.chats.forEach(element => {
                     loadMessages(element,from,to);
@@ -687,7 +688,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.log("Hooray, it worked!",response.chats);
+                // console.log("Hooray, it worked!",response.chats);
                 $('.messages').empty();
 
                 response.chats.forEach(element => {
@@ -730,8 +731,8 @@
                 url = '/get/group/last/message/'+group_id+'/'+last_group_id;
 
 
-            console.warn(url,"LAST");
-            console.warn(user_id,"User ID");
+            // console.warn(url,"LAST");
+            // console.warn(user_id,"User ID");
             // user_id = to.id;
 
             let request = $.ajax({
@@ -742,7 +743,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.warn(response,'LAST RESPO0NSE');
+                // console.warn(response,'LAST RESPO0NSE');
 
                 response.chats.forEach(element => {
                     if(element.from != response.user.id){
@@ -776,25 +777,7 @@
         }
 
         function openFile(e) {
-            var input = document.createElement('input');
-            input.type = 'file';
-            input.click();
-
-            input.onchange = e => {
-
-                // getting a hold of the file reference
-                var file = e.target.files[0];
-
-                // setting up the reader
-                var reader = new FileReader();
-                reader.readAsText(file,'UTF-8');
-
-                // here we tell the reader what to do when it's done reading...
-                reader.onload = readerEvent => {
-                var content = readerEvent.target.result; // this is the content!
-                console.log( content );
-            }
-            }
+            var input = document.getElementById('file_message').click();
 
         }
     </script>

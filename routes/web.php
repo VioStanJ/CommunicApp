@@ -33,6 +33,7 @@ Route::get('/group/request/{id}/{status}',[App\Http\Controllers\GroupController:
 Route::post('/send/message',[App\Http\Controllers\ChatController::class,'send'])->name('send.message');
 Route::get('/get/message/{id}',[App\Http\Controllers\ChatController::class,'all'])->name('all.message');
 Route::get('/get/last/message/{id}/{last}',[App\Http\Controllers\ChatController::class,'last'])->name('last.message');
+Route::post('/send/file',[App\Http\Controllers\ChatController::class,'sendFile'])->name('send.file');
 
 // Group
 Route::post('/send/group/message',[App\Http\Controllers\ChatController::class,'sendGroup'])->name('group.send.message');

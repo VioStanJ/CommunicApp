@@ -96,4 +96,14 @@ class ChatController extends Controller
 
         return response()->json(['success'=>true,'chats'=>$chats,'user'=>$request->user()], 200);
     }
+
+    public function sendFile(Request $request)
+    {
+        if($request->hasFile('image')){
+            return response()->json(['FILE'=>$request->all()], 200);
+
+        }
+
+        return response()->json(['DATA'=>$request->all()], 200);
+    }
 }

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
+    <title>CommuniC::App</title>
+=======
     <title>CommunicApp</title>
+>>>>>>> 7c6ff0f53ba287c3a5e3c50075c5bd7da9733f8f
 
     <!-- Favicon -->
     <link rel="icon" href="./dist/media/img/favicon.png" type="image/png">
