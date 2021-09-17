@@ -29,6 +29,7 @@ class ResetEmailController extends Controller
         try {
             Mail::to($request->email)->send(new ResetAccount($user,$change));
         } catch (\Throwable $th) {
+            dd($th);
         }
 
         $request->session()->put('resent', true);
