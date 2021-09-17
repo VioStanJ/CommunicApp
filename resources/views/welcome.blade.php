@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<<<<<<< HEAD
-    <title>CommuniC::App</title>
-=======
->>>>>>> db231ada2bd0e1ae6258bd08170dba57c5ffe699
 
     <title>CommuniC::App</title>
     <!-- Favicon -->
