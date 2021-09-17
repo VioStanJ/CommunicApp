@@ -21,13 +21,15 @@
     <!-- Landing page styles -->
     <link rel="stylesheet" href="./dist/css/landing-page.min.css">
 </head>
-<body class="auth" style="background: url(./dist/media/img/auth.jpg)">
+<body class="auth" style="background: url({{asset('./img/chat.jpg')}})">
 
-<div class="form-wrapper">
+<div class="form-wrapper" style="margin-top : 10px;">
 
     <!-- logo -->
-    <div class="logo my-5">
-        <img src="./dist/media/img/logo-full-2x.png" alt="logo">
+    <div class="logo">
+        <h1 class="hero-title" style="height: 20px; font-size : 30px;">
+            <strong><a href="/" style="color : #000; text-decoration : none;">CommunicApp</a></strong>
+        </h1>
     </div>
     <!-- ./ logo -->
 

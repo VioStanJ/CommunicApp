@@ -31,9 +31,9 @@
                 </li> --}}
                 <li>
                     <a class="active" data-left-sidebar="friends" href="#" data-toggle="tooltip"
-                       title="Friends" data-placement="right">
-                        <span class="badge badge-danger"></span>
-                        <i data-feather="user"></i>
+                       title="Chat" data-placement="right">
+                        <span class="badge badge-warning"></span>
+                        <i data-feather="message-circle"></i>
                     </a>
                 </li>
                 <li>
@@ -209,7 +209,7 @@
     <div id="favorites" class="left-sidebar">
         <div class="left-sidebar-header">
             <form>
-                <h4 class="mb-4">Favorites</h4>
+                <h4 class="mb-4">Groups</h4>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <button class="btn" type="button">

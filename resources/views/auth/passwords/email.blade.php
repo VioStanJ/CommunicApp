@@ -21,15 +21,13 @@
     <!-- Landing page styles -->
     <link rel="stylesheet" href="{{asset('dist/css/landing-page.min.css')}}">
 </head>
-<body class="auth" style="background: url({{asset('dist/media/img/auth.jpg')}})">
+<body class="auth" style="background: url({{asset('./img/chat.jpg')}})">
 
 <div class="form-wrapper">
 
-    <!-- logo -->
-    <div class="logo my-5">
-        <img src="{{asset('dist/media/img/logo-full-2x.png')}}" alt="logo">
-    </div>
-    <!-- ./ logo -->
+    <h1 class="hero-title" style="height: 20px; font-size : 30px;">
+        <strong><a href="/" style="color : #000; text-decoration : none;">CommunicApp</a></strong>
+    </h1>
 
     <h5>Reset password</h5>
 
