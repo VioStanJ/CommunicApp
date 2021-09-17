@@ -785,6 +785,10 @@
                 // getting a hold of the file reference
                 var file = e.target.files[0];
 
+                console.warn(is_group,'IS Group');
+                console.warn(group_id,'Group ID');
+                console.warn(user_id,'To');
+
                 // setting up the reader
                 var reader = new FileReader();
                 reader.readAsText(file,'UTF-8');
