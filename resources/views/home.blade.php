@@ -229,7 +229,7 @@
 
                             <h5 class="font-weight-bold">{{$item->group->name}}</h5>
                             <p class="small text-muted">{{$item->group->topic}}</p>
-                            <span class="small text-warning">Membres ({{$item->members->members??0}})</span>
+                            <span class="small text-warning"  onclick="chatGroup(this,'{{$item}}')">Membres ({{$item->members->members??0}})</span>
                         </div>
                         <div class="users-list-action">
                             <div class="action-toggle">
@@ -431,9 +431,9 @@
                             type="button" onclick="openFile(this)">
                         <i class="mdi mdi-plus"></i>
                     </button>
-                    <div class="dropdown-menu">
+                    {{-- <div class="dropdown-menu">
                         <a href="#" class="dropdown-item">File</a>
-                    </div>
+                    </div> --}}
                 </div>
                 <input type="hidden" name="to" id="user_to">
                 <input type="hidden" name="group_id" id="group_id">
@@ -554,7 +554,6 @@
             $('.no-message-container').addClass('d-none');
             $('.chat-preloader').removeClass('d-none');
             $('.left-sidebar .list-group .list-group-item').removeClass('active');
-            $(e.currentTarget).addClass('active').removeClass('unread-chat').find('.new-message-count').remove();
             setTimeout(function () {
             $('.chat').addClass('open').removeClass('no-message');
             $('.no-message-container').removeClass('d-none');
@@ -665,6 +664,7 @@
             document.getElementById('chat_image').style.display = "none";
             console.warn(group);
             document.getElementById('group_id_i').value = JSON.parse(group).group_id;
+            document.getElementById('group_id').value = JSON.parse(group).group_id;
             document.getElementById('chat-footer').style.display = 'block';
 
             is_group = 1;
