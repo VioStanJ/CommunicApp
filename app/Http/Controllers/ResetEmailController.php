@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\VerifyCode;
 use App\Mail\ResetAccount;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
 
 class ResetEmailController extends Controller
 {
@@ -26,7 +27,7 @@ class ResetEmailController extends Controller
         $change->save();
 
         try {
-            Mail::to($user->email)->send(new ResetAccount($user,$change));
+            Mail::to($request->email)->send(new ResetAccount($user,$change));
         } catch (\Throwable $th) {
         }
 
