@@ -450,6 +450,10 @@
 
     <form id="form_empty">
         @csrf
+        <input type="file" id="file_message" style="visibility: hidden;">
+        <input type="hidden" name="group" id="fgroup">
+        <input type="hidden" name="to" id="fto">
+        <input type="hidden" name="type" id="ftype">
     </form>
     <!-- ./ chat -->
 
@@ -780,63 +784,38 @@
         }
 
         function openFile(e) {
-            var input = document.createElement('input');
-            input.type = 'file';
-            input.click();
-
-            input.onchange = e => {
-
-                // getting a hold of the file reference
-                var file = e.target.files[0];
-
-                console.warn(is_group,'IS Group');
-                console.warn(group_id,'Group ID');
-                console.warn(user_id,'To');
-                console.warn(file,'FILE e');
-
-                // var formData = new FormData();
-                // //
-
-                var form = $('#form_empty')[0];
-                var formData = new FormData(form);
-                formData.append('file', e.target.files[0]);
-                formData.append('group', group_id);
-                formData.append('to', user_id);
-                formData.append('type', is_group);
-
-                for (var pair of formData.entries()) {
-                    console.log(pair[0]+ ', ' + pair[1]);
-                }
-
-            $.ajax({
-                url: '/send/file',
-                type:"post",
-                context: document.body,
-                enctype: 'multipart/form-data',
-                data : formData,
-                processData: false,
-                contentType: false,
-                success: function (data) {
-                        console.warn(data,'Response');
-                    },
-                    error: function (e) {
-                        console.warn(e,'Eroor');
-                    }
-            });
-
-
-
-            // setting up the reader
-                var reader = new FileReader();
-                reader.readAsText(file,'UTF-8');
-
-                // here we tell the reader what to do when it's done reading...
-                reader.onload = readerEvent => {
-                var content = readerEvent.target.result; // this is the content!
-                // console.log( content );
-            }
-            }
+            var input = document.getElementById('file_message').click();
 
         }
+
+        $("#file_message").change(function(){
+            document.getElementById('fgroup').value = group_id;
+            document.getElementById('fto').value = user_id;
+            document.getElementById('ftype').value = is_group;
+
+            $('#form_empty').submit(function (e) {
+               e.preventDefault();
+
+               var $form = $(this);
+                alert('submit')
+               var serializedData = $form.serialize();
+
+                $.ajax({
+                    url: '/send/file',
+                    type:"post",
+                    context: document.body,
+                    enctype: 'multipart/form-data',
+                    data : $('#form_empty').serialize(),
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                            console.warn(data,'Response');
+                        },
+                        error: function (e) {
+                            console.warn(e,'Eroor');
+                        }
+                });
+            });
+        });
     </script>
 @endsection
