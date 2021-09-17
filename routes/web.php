@@ -42,3 +42,9 @@ Route::get('/get/group/last/message/{id}/{last}',[App\Http\Controllers\ChatContr
 
 //Reset
 Route::post('/send/email',[App\Http\Controllers\ResetEmailController::class,'sendEmail'])->name('send.email');
+
+
+//Content Check
+Route::get('/check/adult/content',[App\Http\Controllers\CheckController::class,'get']);
+Route::post('/check/adult/content',[App\Http\Controllers\CheckController::class,'check'])->name('check.image');
+Route::get('/check/image/{id}',[App\Http\Controllers\CheckController::class,'getImage']);

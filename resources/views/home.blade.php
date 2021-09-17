@@ -42,6 +42,12 @@
                         <i data-feather="users"></i>
                     </a>
                 </li>
+                <li onclick="document.location.href='/check/adult/content'">
+                    <a data-left-sidebar="favorites" data-toggle="tooltip" title="Groups" data-placement="right"
+                       href="/check/adult/content">
+                        <i data-feather="check"></i>
+                    </a>
+                </li>
                 <li class="brackets">
 
                 </li>
