@@ -12,7 +12,7 @@
             <div class="modal-body">
                 <form class="mb-4" method="POST" action="{{route('add.group')}}">
                     @csrf
-                    <input type="hidden" id="group_id" name="group_id">
+                    <input type="hidden" id="group_id_i" name="group_id">
                     <div class="form-group">
                         <label for="invite_emails" class="col-form-label">Email address</label>
                         <div class="input-group mb-3">

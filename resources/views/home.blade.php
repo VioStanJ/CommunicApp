@@ -483,7 +483,7 @@
         var last_id = 0;
         document.getElementById('chat_image').style.display = "none";
         document.getElementById('chat-footer').style.display = 'none';
-        
+
         function chat(e,from,to) {
             document.getElementById('chat_name').innerHTML = JSON.parse(to).name;
             document.getElementById('chat_info').innerHTML = JSON.parse(to).email;
@@ -492,6 +492,7 @@
             document.getElementById('user_to').value = JSON.parse(to).id;
             document.getElementById('chat-footer').style.display = 'block';
             $('.messages').empty();
+            load();
             loadUserChat(JSON.parse(from),JSON.parse(to));
         }
 
@@ -643,12 +644,12 @@
     </script>
 
     <script>
-                
+
         function setGroupInvite(e,group) {
             let groupe = JSON.parse(group);
             document.getElementById('group_id').value = groupe.group_id;
             document.getElementById('total_group').innerHTML = "Total "+groupe.members.members;
-            console.warn(groupe,"GROUP");            
+            console.warn(groupe,"GROUP");
             document.getElementById('chat-footer').style.display = 'block';
 
             if(groupe.type == 1){
@@ -663,12 +664,13 @@
             document.getElementById('chat_info').innerHTML = JSON.parse(group).group.topic;
             document.getElementById('chat_image').style.display = "none";
             console.warn(group);
-            document.getElementById('group_id').value = JSON.parse(group).group_id;
+            document.getElementById('group_id_i').value = JSON.parse(group).group_id;
             document.getElementById('chat-footer').style.display = 'block';
 
             is_group = 1;
             group_id = JSON.parse(group).group_id;
             $('.messages').empty();
+            load();
             loadGroupChat(JSON.parse(group));
 
             setInterval(() => {
@@ -724,9 +726,9 @@
         function getLastGroup() {
             let url = '';
 
-        
+
                 url = '/get/group/last/message/'+group_id+'/'+last_group_id;
-            
+
 
             console.warn(url,"LAST");
             console.warn(user_id,"User ID");
@@ -778,10 +780,10 @@
             input.type = 'file';
             input.click();
 
-            input.onchange = e => { 
+            input.onchange = e => {
 
                 // getting a hold of the file reference
-                var file = e.target.files[0]; 
+                var file = e.target.files[0];
 
                 // setting up the reader
                 var reader = new FileReader();
