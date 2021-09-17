@@ -58,7 +58,7 @@ class HomeController extends Controller
                 $list_users[$key] = User::find($value2->user_id);
             } 
 
-            $value->list_users = $list_users[0];
+            $value->list_users = $list_users;
         }
 
 

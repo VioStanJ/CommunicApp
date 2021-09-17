@@ -25,8 +25,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/send/request/friend',[App\Http\Controllers\InvitationController::class,'send'])->name('send.friend.request');
 Route::get('/friend/request/{id}/{status}',[App\Http\Controllers\InvitationController::class,'repond'])->name('repond.friend.request');
 
-Route::post('/create/group','GroupController@create')->name('create.group');
-Route::post('/add/user/group',[App\http\Controllers\GroupController::class,'add'])->name('add.group');
+Route::post('/create/group',[App\Http\Controllers\GroupController::class,'create'])->name('create.group');
+Route::post('/add/user/group',[App\Http\Controllers\GroupController::class,'add'])->name('add.group');
 Route::get('/group/request/{id}/{status}',[App\Http\Controllers\GroupController::class,'repond'])->name('repond.group.request');
 
 // Chat
