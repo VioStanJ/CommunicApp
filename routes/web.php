@@ -22,6 +22,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/user/verification/{token}', [App\Http\Controllers\ResetEmailController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [App\Http\Controllers\ResetEmailController::class, 'updatePassword'])->name('password.update');
+
 Route::post('/send/request/friend',[App\Http\Controllers\InvitationController::class,'send'])->name('send.friend.request');
 Route::get('/friend/request/{id}/{status}',[App\Http\Controllers\InvitationController::class,'repond'])->name('repond.friend.request');
 
