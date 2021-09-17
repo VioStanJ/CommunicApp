@@ -35,7 +35,7 @@
     <form method="POST" action="{{ route('send.email') }}">
         @csrf
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Email" name="email" required autofocus>
+            <input type="text" class="form-control" placeholder="Email" name="email" style="outline: none;" required autofocus>
         </div>
         <button class="btn btn-primary">Submit</button>
         <div class="my-5">

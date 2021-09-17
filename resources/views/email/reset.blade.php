@@ -14,12 +14,12 @@
             <h4>CommunicApp</h4>
         </div>
         <br><br>
-        <p>Welcome to Icosol , Mr/Mrs {{$user->name}} !</p>
+        <p>Hello , Mr/Mrs {{$user->name}} !</p>
         <br>
-        <p>Verify your account.</p>
+        <p>Please, Click below to change your password.</p>
 
         @component('mail::button', ['url' => 'https://app.cdevlop.com/user/verification/'.$code->code])
-        To Verify Click !!!
+        Update password !!!
         @endcomponent
 
         <h3>Thank you for choosing us !!!</h3>
