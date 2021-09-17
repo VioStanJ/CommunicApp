@@ -50,7 +50,7 @@
                         <div class="row">
                             @foreach ($output['nudity'] as $key => $item)
                             <div class="alert alert-primary ml-2" role="alert">
-                                {{$key}} :: {{$item}} %
+                                {{$key}} :: {{$item*100}} %
                             </div>
                             @endforeach
                         </div>
@@ -59,21 +59,21 @@
                     @if (isset($output['weapon']))
                     <h3>Arme</h3>
                     <div class="alert alert-primary ml-2" role="alert">
-                        {{$output['weapon']}} %
+                        {{$output['weapon']*100}} %
                       </div>
                     @endif
 
                     @if (isset($output['alcohol']))
                     <h3>Alcool</h3>
                     <div class="alert alert-primary ml-2" role="alert">
-                        {{$output['alcohol']}} %
+                        {{$output['alcohol']*100}} %
                       </div>
                     @endif
 
                     @if (isset($output['drugs']))
                     <h3>Drogue</h3>
                     <div class="alert alert-primary ml-2" role="alert">
-                        {{$output['drugs']}} %
+                        {{$output['drugs']*100}} %
                       </div>
                     @endif
 
