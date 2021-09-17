@@ -447,6 +447,10 @@
             </form>
         </div>
     </div>
+
+    <form id="form_empty">
+        @csrf
+    </form>
     <!-- ./ chat -->
 
 </div>
@@ -584,7 +588,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.log("Hooray, it worked!",response);
+                // console.log("Hooray, it worked!",response);
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown){
@@ -612,8 +616,8 @@
 
             url = '/get/last/message/'+user_id+'/'+last;
 
-            console.warn(url,"LAST");
-            console.warn(user_id,"User ID");
+            // console.warn(url,"LAST");
+            // console.warn(user_id,"User ID");
             // user_id = to.id;
 
             let request = $.ajax({
@@ -624,7 +628,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.warn(response,'LAST RESPO0NSE');
+                // console.warn(response,'LAST RESPO0NSE');
 
                 response.chats.forEach(element => {
                     loadMessages(element,from,to);
@@ -687,7 +691,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.log("Hooray, it worked!",response.chats);
+                // console.log("Hooray, it worked!",response.chats);
                 $('.messages').empty();
 
                 response.chats.forEach(element => {
@@ -730,8 +734,8 @@
                 url = '/get/group/last/message/'+group_id+'/'+last_group_id;
 
 
-            console.warn(url,"LAST");
-            console.warn(user_id,"User ID");
+            // console.warn(url,"LAST");
+            // console.warn(user_id,"User ID");
             // user_id = to.id;
 
             let request = $.ajax({
@@ -742,7 +746,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.warn(response,'LAST RESPO0NSE');
+                // console.warn(response,'LAST RESPO0NSE');
 
                 response.chats.forEach(element => {
                     if(element.from != response.user.id){
@@ -788,15 +792,48 @@
                 console.warn(is_group,'IS Group');
                 console.warn(group_id,'Group ID');
                 console.warn(user_id,'To');
+                console.warn(file,'FILE e');
 
-                // setting up the reader
+                // var formData = new FormData();
+                // //
+
+                var form = $('#form_empty')[0];
+                var formData = new FormData(form);
+                formData.append('file', e.target.files[0]);
+                formData.append('group', group_id);
+                formData.append('to', user_id);
+                formData.append('type', is_group);
+
+                for (var pair of formData.entries()) {
+                    console.log(pair[0]+ ', ' + pair[1]);
+                }
+
+            $.ajax({
+                url: '/send/file',
+                type:"post",
+                context: document.body,
+                enctype: 'multipart/form-data',
+                data : formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                        console.warn(data,'Response');
+                    },
+                    error: function (e) {
+                        console.warn(e,'Eroor');
+                    }
+            });
+
+
+
+            // setting up the reader
                 var reader = new FileReader();
                 reader.readAsText(file,'UTF-8');
 
                 // here we tell the reader what to do when it's done reading...
                 reader.onload = readerEvent => {
                 var content = readerEvent.target.result; // this is the content!
-                console.log( content );
+                // console.log( content );
             }
             }
 
