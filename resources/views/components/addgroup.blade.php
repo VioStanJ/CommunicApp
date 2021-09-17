@@ -18,56 +18,12 @@
                         <label for="group_name" class="col-form-label">Group name</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="group_name" name="group_name">
-                            <div class="input-group-append">
-                                <button class="btn btn-success" data-toggle="dropdown" title="Emoji" type="button">
-                                    <i class="mdi mdi-face"></i>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-big dropdown-menu-right p-0">
-                                    <div class="dropdown-menu-search">
-                                        <input type="text" class="form-control" placeholder="Search emoji">
-                                    </div>
-                                    <div class="emojis chat-emojis">
-                                        <ul>
-                                            <li>😁</li>
-                                            <li>😂</li>
-                                            <li>😃</li>
-                                            <li>😄</li>
-                                            <li>😅</li>
-                                            <li>😆</li>
-                                            <li>😉</li>
-                                            <li>😊</li>
-                                            <li>😋</li>
-                                            <li>😌</li>
-                                            <li>😍</li>
-                                            <li>😏</li>
-                                            <li>😒</li>
-                                            <li>😓</li>
-                                            <li>😔</li>
-                                            <li>😖</li>
-                                            <li>😘</li>
-                                            <li>😝</li>
-                                            <li>😠</li>
-                                            <li>😢</li>
-                                            <li>🙅</li>
-                                            <li>🙆</li>
-                                            <li>🙇</li>
-                                            <li>🙈</li>
-                                            <li>🙉</li>
-                                            <li>🙊</li>
-                                            <li>🙋</li>
-                                            <li>🙌</li>
-                                            <li>🙍</li>
-                                            <li>🙎</li>
-                                            <li>🙏</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="description" class="col-form-label">Description</label>
-                        <textarea class="form-control" id="description" name="description"></textarea>
+                        <textarea class="form-control" id="description" name="description" required></textarea>
                     </div>
 
                 <button type="submit" class="btn btn-primary">Create Group</button>

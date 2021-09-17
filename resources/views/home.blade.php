@@ -448,13 +448,6 @@
         </div>
     </div>
 
-    <form id="form_empty">
-        @csrf
-        <input type="file" id="file_message" style="visibility: hidden;">
-        <input type="hidden" name="group" id="fgroup">
-        <input type="hidden" name="to" id="fto">
-        <input type="hidden" name="type" id="ftype">
-    </form>
     <!-- ./ chat -->
 
 </div>
@@ -787,35 +780,5 @@
             var input = document.getElementById('file_message').click();
 
         }
-
-        $("#file_message").change(function(){
-            document.getElementById('fgroup').value = group_id;
-            document.getElementById('fto').value = user_id;
-            document.getElementById('ftype').value = is_group;
-
-            $('#form_empty').submit(function (e) {
-               e.preventDefault();
-
-               var $form = $(this);
-                alert('submit')
-               var serializedData = $form.serialize();
-
-                $.ajax({
-                    url: '/send/file',
-                    type:"post",
-                    context: document.body,
-                    enctype: 'multipart/form-data',
-                    data : $('#form_empty').serialize(),
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                            console.warn(data,'Response');
-                        },
-                        error: function (e) {
-                            console.warn(e,'Eroor');
-                        }
-                });
-            });
-        });
     </script>
 @endsection
