@@ -451,7 +451,7 @@
                 </div>
                 <input type="hidden" name="to" id="user_to">
                 <input type="hidden" name="group_id" id="group_id">
-                <input type="hidden" name="user_id" value="{{Auth::user()->id}}"/>
+                <input type="hidden" name="user_id" id="user_id_g" value="{{Auth::user()->id}}"/>
                 <input type="text" class="form-control form-control-main" id="chat_message" name="message" placeholder="Write a message.">
                 <div>
                     <button class="btn btn-primary ml-2 btn-floating" type="submit">
@@ -605,6 +605,8 @@
             formData.append('_token',token);
             formData.append('message',chat_message.value);
             formData.append('to',to_the_user.value);
+            formData.append('group_id',document.getElementById('group_id').value);
+            formData.append('user_id',document.getElementById('user_id_g').value);
 
             try {
                 formData.append('image', $('#file_message')[0].files[0]);
@@ -749,7 +751,10 @@
                             text: element.message,
                             avatar: element.user.avatar,
                             name: element.user.name,
-                            time: element.created_at
+                            time: element.created_at,
+                            media: element.is_media,
+                            link : element.link,
+                            status : element.status
                         });
                     }else{
                         send_message({
@@ -757,7 +762,10 @@
                             text: element.message,
                             avatar: element.user.avatar,
                             name: "Moi",
-                            time: element.created_at
+                            time: element.created_at,
+                            media: element.is_media,
+                            link : element.link,
+                            status : element.status
                         });
                     }
                     last_group_id = element.id;

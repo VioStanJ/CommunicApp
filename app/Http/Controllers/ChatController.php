@@ -36,8 +36,6 @@ class ChatController extends Controller
 
         $user = $request->user();
 
-        // return response()->json($request->all());
-
         $chat = new Chat();
 
         $chat->user_from = $user->id;
@@ -49,7 +47,7 @@ class ChatController extends Controller
             $store = '/storage/images';
             self::mkdir($store);
             $image = $request->file('image');
-            $img_name = time().'test.'.$image->getClientOriginalExtension();
+            $img_name = time().$image->getClientOriginalExtension();
             $desti = public_path($store);
 
             $chat->is_media = 1;
@@ -84,18 +82,38 @@ class ChatController extends Controller
         $request->validate([
             'group_id'=>'required',
             'user_id'=>'required',
-            'message'=>'required',
+            'message'=>'',
             'is_media'=>'',
         ]);
 
         $user = $request->user();
 
-        $chat = GroupChat::create([
-            'from'=>$request->user_id,
-            'group_id'=>$request->group_id,
-            'message'=>$request->message,
-            'is_media'=>$request->is_media??0
-        ]);
+        $chat = new GroupChat();
+        $chat->from = $request->user_id;
+        $chat->group_id = $request->group_id;
+        $chat->message = $request->message;
+
+        if($request->hasFile('image')){
+
+            $store = '/storage/groups/images';
+            self::mkdir($store);
+            $image = $request->file('image');
+            $img_name = time().$image->getClientOriginalExtension();
+            $desti = public_path($store);
+
+            $chat->is_media = 1;
+            $chat->link = '/storage/groups/images/'.$img_name;
+
+            $image->move($desti,$img_name);
+
+            if(empty($request->message)){
+                $chat->message = $img_name;
+            }
+        }
+
+        $chat->save();
+        
+        self::check($chat);
 
         return response()->json(['success'=>true,'chat'=>$chat], 200);
     }
@@ -140,7 +158,7 @@ class ChatController extends Controller
         }
     }
 
-    public function check(Chat $chat){
+    public function check($chat){
 
         if(!$chat->is_media){
             return;
