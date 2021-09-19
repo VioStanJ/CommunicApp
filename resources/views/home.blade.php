@@ -1,6 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+    .message-content-images>img{
+        border-radius : 4px;
+    }
+</style>
 <!-- layout -->
 <div class="layout">
 
@@ -547,7 +553,9 @@
                     text: element.message,
                     avatar: to.avatar,
                     name: to.name,
-                    time: element.created_at
+                    time: element.created_at,
+                    media:element.is_media,
+                    link : element.link
                 });
             }else{
                 send_message({
@@ -555,7 +563,9 @@
                     text: element.message,
                     avatar: from.avatar,
                     name: "Moi",
-                    time: element.created_at
+                    time: element.created_at,
+                    media: element.is_media,
+                    link : element.link
                 });
             }
             last_id = element.id;
@@ -637,8 +647,9 @@
         });
 
         var send_message = function send_message(msg) {
-            if (msg.type === 'in-typing') {
-            $('.messages').append("<div class=\"message-item in in-typing\">\n                <div class=\"message-content\">\n                    <div class=\"message-text\">\n                        <div class=\"writing-animation\">\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                            <div class=\"writing-animation-line\"></div>\n                        </div>\n                    </div>\n                </div>\n            </div>");
+            console.warn(msg,'ELEMENT');
+            if (msg.media === 1) {
+            $('.messages').append('<div class="message-item out"><div class="message-avatar"><figure class="avatar avatar-sm"><img src="'+msg.avatar+'" class="rounded-circle" alt="image"></figure><div><h5>'+msg.name+'</h5><div class="time">'+msg.time+'<i class="mdi mdi-check-all text-info ml-1"></i></div></div></div><div class="message-content"><div><div class="message-content-images"><a href="{{asset('+msg.link+')}}" data-fancybox="images"><img src="'+msg.link+'" alt="image"></a></div></div></div></div>');
             } else {
             $('.messages .message-item.in-typing').remove();
             $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            "+msg.time+"\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                                    </div>\n            </div>");

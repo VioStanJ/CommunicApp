@@ -36,6 +36,8 @@ class ChatController extends Controller
 
         $user = $request->user();
 
+        // return response()->json($request->all());
+
         $chat = new Chat();
 
         $chat->user_from = $user->id;
@@ -55,8 +57,8 @@ class ChatController extends Controller
 
             $image->move($desti,$img_name);
 
-            if(strlen($request->message)<=0){
-                $request->message = $img_name;
+            if(empty($request->message)){
+                $chat->message = $img_name;
             }
         }
 
