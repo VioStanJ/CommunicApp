@@ -555,7 +555,8 @@
                     name: to.name,
                     time: element.created_at,
                     media:element.is_media,
-                    link : element.link
+                    link : element.link,
+                    status : element.status
                 });
             }else{
                 send_message({
@@ -565,7 +566,8 @@
                     name: "Moi",
                     time: element.created_at,
                     media: element.is_media,
-                    link : element.link
+                    link : element.link,
+                    status : element.status
                 });
             }
             last_id = element.id;
@@ -647,12 +649,15 @@
         });
 
         var send_message = function send_message(msg) {
-            console.warn(msg,'ELEMENT');
             if (msg.media === 1) {
-            $('.messages').append('<div class="message-item out"><div class="message-avatar"><figure class="avatar avatar-sm"><img src="'+msg.avatar+'" class="rounded-circle" alt="image"></figure><div><h5>'+msg.name+'</h5><div class="time">'+msg.time+'<i class="mdi mdi-check-all text-info ml-1"></i></div></div></div><div class="message-content"><div><div class="message-content-images"><a href="{{asset('+msg.link+')}}" data-fancybox="images"><img src="'+msg.link+'" alt="image"></a></div></div></div></div>');
+                if(msg.status == 5){
+                    $('.messages').append('<div class="message-item '+ msg.type +'"><div class="message-avatar"><figure class="avatar avatar-sm"><img src="'+msg.avatar+'" class="rounded-circle" alt="image"></figure><div><h5>'+msg.name+'</h5><div class="time">'+msg.time+'<i class="mdi mdi-check-all text-info ml-1"></i></div></div></div><div class="message-content"><div><div class="message-content-images border"><a href="{{asset('+msg.link+')}}" data-fancybox="images"><img src="{{asset("/img/hidden.png")}}" alt="hidden"></a></div></div></div><p class="text-danger mt-2">'+msg.text+'</p></div>');
+                }else{
+                    $('.messages').append('<div class="message-item '+ msg.type +'"><div class="message-avatar"><figure class="avatar avatar-sm"><img src="'+msg.avatar+'" class="rounded-circle" alt="image"></figure><div><h5>'+msg.name+'</h5><div class="time">'+msg.time+'<i class="mdi mdi-check-all text-info ml-1"></i></div></div></div><div class="message-content"><div><div class="message-content-images"><a href="{{asset('+msg.link+')}}" data-fancybox="images"><img src="'+msg.link+'" alt="image"></a></div></div></div></div>');
+                }
             } else {
-            $('.messages .message-item.in-typing').remove();
-            $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            "+msg.time+"\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                                    </div>\n            </div>");
+                $('.messages .message-item.in-typing').remove();
+                $('.messages').append("<div class=\"message-item " + msg.type + "\">\n                <div class=\"message-avatar\">\n                    <figure class=\"avatar avatar-sm\">\n                        <img src="+ msg.avatar + " class=\"rounded-circle\" alt=\"image\">\n                    </figure>\n                    <div>\n                        <h5>" + msg.name + "</h5>\n                        <div class=\"time\">\n                            "+msg.time+"\n                            " + (msg.type === 'out' ? "<i class=\"ti-double-check text-info\"></i>" : "") + "\n                        </div>\n                    </div>\n                </div>\n                <div class=\"message-content\">\n                    <div class=\"message-text\">" + msg.text + "</div>\n                                    </div>\n            </div>");
             }
         };
 

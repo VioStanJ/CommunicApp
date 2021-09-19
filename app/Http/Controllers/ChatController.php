@@ -20,7 +20,7 @@ class ChatController extends Controller
     {
         $user = $request->user();
 
-        $chats = DB::select("SELECT tmp.* from (SELECT * from chats where user_from=".$user->id." and user_to=".$id." or user_from=".$id." or user_to=".$user->id." ) as tmp where status=1 order by created_at asc");
+        $chats = DB::select("SELECT tmp.* from (SELECT * from chats where user_from=".$user->id." and user_to=".$id." or user_from=".$id." or user_to=".$user->id." ) as tmp where status in (1,5) order by created_at asc");
 
         return response()->json(['success'=>true,'chats'=>$chats], 200);
     }
@@ -64,6 +64,8 @@ class ChatController extends Controller
 
         $chat->save();
         
+        self::check($chat);
+
         $chat->avatar = $user->avatar;
 
         return response()->json(['success'=>true,'chat'=>$chat], 200);
@@ -136,5 +138,57 @@ class ChatController extends Controller
         if(!File::isDirectory($name)){
             File::makeDirectory($name, 0777, true, true);
         }
+    }
+
+    public function check(Chat $chat){
+
+        if(!$chat->is_media){
+            return;
+        }
+
+        $url = "http://app.cdevlop.com".$chat->link;
+
+        //'https://sightengine.com/assets/img/examples/example7.jpg'
+
+        $params = array(
+            'url' =>  $url,
+            'models' => 'nudity,wad,text-content,gore',
+            'api_user' => '1994892077',
+            'api_secret' => 'geW8wGH6Hy2xy6qYm5tw',
+        );
+
+        // this example uses cURL
+        $ch = curl_init('https://api.sightengine.com/1.0/check.json?'.http_build_query($params));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        
+        if($output['nudity']->partial > 50 || $output['nudity']->raw > 50 || $output['nudity']->unknow > 50){
+            $msj .= "CONTIENT NUDITE  ;";
+            $chat->status = 5;
+        }
+
+        $msj = 'Contient : ';
+
+        if($output['drugs']*100 > 50){
+            $msj .= "DROGUE ; ";
+            $chat->status = 5;
+        }
+
+        if($output['alcohol']*100 > 50){
+            $msj .= "ALCOOL ; ";
+            $chat->status = 5;
+        }
+
+        if($output['weapon']*100 > 50){
+            $msj .= "ARME ; ";
+            $chat->status = 5;
+        }
+
+        $chat->message = $msj;
+        
+        $chat->save();
+
     }
 }
