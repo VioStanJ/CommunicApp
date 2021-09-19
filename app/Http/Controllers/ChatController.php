@@ -7,6 +7,7 @@ use App\Models\Chat;
 use DB;
 use App\Models\GroupChat;
 use App\Models\user;
+use Illuminate\Support\Facades\File;
 
 class ChatController extends Controller
 {
@@ -28,9 +29,35 @@ class ChatController extends Controller
     {
         $request->validate([
             'to'=>'required',
-            'message'=>'required',
+            'message'=>'',
             'is_media'=>'',
+            'image'=>'image',
         ]);
+
+        if($request->hasFile('image')){
+
+            $store = '/storage/images';
+            self::mkdir($store);
+            $image = $request->file('image');
+            $img_name = time().'test.'.$image->getClientOriginalExtension();
+            $desti = public_path($store);
+
+            $chat = new Chat();
+            $chat->user_from = 0;
+            $chat->user_to = 0;
+            $chat->message = 'Image Check ';
+            $chat->is_media = 1;
+            $chat->status = 1;
+            $chat->link = '/storage/images/'.$img_name;
+
+            $chat->save();
+
+
+            $image->move($desti,$img_name);
+
+        }
+
+        return response()->json(['success'=>true,'all'=>$request->all()], 200);
 
         $user = $request->user();
 
@@ -105,5 +132,13 @@ class ChatController extends Controller
         }
 
         return response()->json(['DATA'=>$request->all()], 200);
+    }
+
+    public function mkdir($name)
+    {
+        // '/channels/cover'
+        if(!File::isDirectory($name)){
+            File::makeDirectory($name, 0777, true, true);
+        }
     }
 }

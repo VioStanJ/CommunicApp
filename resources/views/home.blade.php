@@ -384,8 +384,8 @@
             </div>
         </div>
         <div class="chat-footer" id="chat-footer" data-intro-js="6">
-            <form class="d-flex" id="send_message">
-                @csrf
+            <form class="d-flex" id="send_message" enctype="multipart/form-data">
+                {{-- @csrf --}}
                 <div class="dropdown">
                     <button class="btn btn-light-info btn-floating mr-3" data-toggle="dropdown" title="Emoji"
                             type="button">
@@ -433,6 +433,8 @@
                     </div>
                 </div>
                 <div class="dropdown">
+                    <input type="file" name="image" id="file_message" style="width: 1px; height: 1px; opacity: 0;">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}" id="_token">
                     <button class="btn btn-light-info btn-floating mr-3" data-toggle="dropdown" title="Emoji"
                             type="button" onclick="openFile(this)">
                         <i class="mdi mdi-plus"></i>
@@ -490,6 +492,9 @@
         var last_id = 0;
         document.getElementById('chat_image').style.display = "none";
         document.getElementById('chat-footer').style.display = 'none';
+        var chat_message = document.getElementById('chat_message');
+        var to_the_user = document.getElementById('user_to');
+        var file_input = document.getElementById('file_message');
 
         function chat(e,from,to) {
             document.getElementById('chat_name').innerHTML = JSON.parse(to).name;
@@ -582,16 +587,32 @@
 
             var serializedData = $form.serialize();
 
+            let formData = new FormData();
+            let token = document.getElementById('_token').value;
+
+            formData.append('_token',token);
+            formData.append('message',chat_message.value);
+            formData.append('to',to_the_user.value);
+
+            try {
+                formData.append('image', $('#file_message')[0].files[0]);
+            } catch (error) {
+                console.warn("ERROR FORM DATA",error);
+            }
+
             var request = $.ajax({
                 url: url,
                 type:"post",
                 context: document.body,
-                data : serializedData
+                data : formData,
+                contentType: false,
+                processData: false,
+                enctype: 'multipart/form-data',
             });
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                // console.log("Hooray, it worked!",response);
+                console.log("Send worked!",response);
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown){
@@ -603,6 +624,16 @@
             });
 
             document.getElementById('chat_message').value = "";
+            clearFileInput(file_input);
+
+            function clearFileInput(ctrl) {
+                try {
+                    ctrl.value = null;
+                } catch(ex) { }
+                if (ctrl.value) {
+                    ctrl.parentNode.replaceChild(ctrl.cloneNode(true), ctrl);
+                }
+            }
         });
 
         var send_message = function send_message(msg) {
