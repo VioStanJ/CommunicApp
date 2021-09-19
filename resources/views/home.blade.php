@@ -650,10 +650,6 @@
 
             url = '/get/last/message/'+user_id+'/'+last;
 
-            // console.warn(url,"LAST");
-            // console.warn(user_id,"User ID");
-            // user_id = to.id;
-
             let request = $.ajax({
                 url : '/get/last/message/'+user_id+'/'+last,
                 type:'get',

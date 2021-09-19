@@ -31,8 +31,16 @@ class ChatController extends Controller
             'to'=>'required',
             'message'=>'',
             'is_media'=>'',
-            'image'=>'image',
+            'image'=>'',
         ]);
+
+        $user = $request->user();
+
+        $chat = new Chat();
+
+        $chat->user_from = $user->id;
+        $chat->user_to = $request->to;
+        $chat->message = $request->message;
 
         if($request->hasFile('image')){
 
@@ -42,32 +50,18 @@ class ChatController extends Controller
             $img_name = time().'test.'.$image->getClientOriginalExtension();
             $desti = public_path($store);
 
-            $chat = new Chat();
-            $chat->user_from = 0;
-            $chat->user_to = 0;
-            $chat->message = 'Image Check ';
             $chat->is_media = 1;
-            $chat->status = 1;
             $chat->link = '/storage/images/'.$img_name;
-
-            $chat->save();
-
 
             $image->move($desti,$img_name);
 
+            if(strlen($request->message)<=0){
+                $request->message = $img_name;
+            }
         }
 
-        return response()->json(['success'=>true,'all'=>$request->all()], 200);
-
-        $user = $request->user();
-
-        $chat = Chat::create([
-            'user_from'=>$user->id,
-            'user_to'=>$request->to,
-            'message'=>$request->message,
-            'is_media'=>$request->is_media??0
-        ]);
-
+        $chat->save();
+        
         $chat->avatar = $user->avatar;
 
         return response()->json(['success'=>true,'chat'=>$chat], 200);
