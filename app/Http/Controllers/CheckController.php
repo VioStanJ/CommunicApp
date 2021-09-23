@@ -17,6 +17,7 @@ class CheckController extends Controller
     {
 
         if($request->hasFile('image')){
+            // dd(true);
 
             $store = '/storage/images';
             self::mkdir($store);
@@ -31,15 +32,16 @@ class CheckController extends Controller
             $chat->is_media = 1;
             $chat->status = 1;
             $chat->link = '/storage/images/'.$img_name;
-
             $chat->save();
 
-
             $image->move($desti,$img_name);
+            
+            // dd($chat);
+            
+            return redirect()->to('/check/image/'.$chat->id);
 
         }
 
-        return redirect()->to('/check/image/'.$chat->id);
     }
 
     public function getImage(Request $request,$id)
@@ -64,6 +66,7 @@ class CheckController extends Controller
         curl_close($ch);
 
         $output = json_decode($response, true);
+        // dd($output);
 
         return view('content.result',compact('output','chat'));
     }

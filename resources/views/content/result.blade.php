@@ -30,6 +30,13 @@
             align-items: center;
             height: 80vh;
         }
+        .btn {
+            text-align: center;
+            padding: 10px 20px;
+            background : white;
+            text-decoration: none;
+            color :rgb(8, 155, 160);
+        }
     </style>
     <div style="width: 100%; height: 100vh; background: rgb(8, 155, 160);">
         <div class="row">
@@ -80,6 +87,10 @@
                 </div>
             </div>
         </div>
+        <div style="display: flex; justify-content : center;">
+            <a class="btn" href="/home"> <- Go back to app</a>
+        </div>
+
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
