@@ -58,9 +58,27 @@
 
                 </li>
 
+                <style>
+                    .circle{
+                        width : 20px;
+                        height: 20px;
+                        text-align: center;
+                        line-height: 20px;
+                        border-radius: 50%;
+                        font-size: 10px;
+                        position: relative;
+                        left: -8px;
+                        top : -9px;
+                        background-color :#ff5252;
+                        color : #fff;
+                    }
+                </style>
+
                 <li class="d-none d-lg-block" data-toggle="tooltip" title="Notifications" data-placement="right">
                     <a href="#" data-toggle="modal" data-right-sidebar="notifications">
-                        <i class="mdi mdi-bell-outline"></i>
+                        <i class="mdi mdi-bell-outline"></i><circle class="circle">
+                            {{count($invitations) + count($group_invitations)}}
+                        </circle>
                     </a>
                 </li>
                 <li data-toggle="tooltip" title="{{Auth::user()->name}}" data-placement="right">
