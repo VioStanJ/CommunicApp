@@ -184,7 +184,7 @@ class ChatController extends Controller
         $msj = 'CONTIENT : ';
 
         
-        if(($output['nudity']['partial']) > 50 || ($output['nudity']['raw']) > 50 || ($output['nudity']['safe']) > 50){
+        if(($output['nudity']['partial']) * 100 > 50 || ($output['nudity']['raw']) * 100 > 50 || ($output['nudity']['safe']) * 100 < 50){
             $msj .= "NUDITE  ;";
             $chat->status = 5;
         }
@@ -208,5 +208,6 @@ class ChatController extends Controller
         $chat->message = $msj;
         
         $chat->save();
+        return $output;
     }
 }
