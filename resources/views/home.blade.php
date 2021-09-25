@@ -269,7 +269,9 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a href="#" class="dropdown-item" onclick="chatGroup(this,'{{$item->group}}')">Open</a>
-                                        <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveGroup"  onclick="setGroupInvite(this,'{{$item}}')">Add Members</a>
+                                        @if($item->group->created_by == request()->user()->id)
+                                            <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveGroup"  onclick="setGroupInvite(this,'{{$item}}')">Add Members</a>
+                                        @endif
                                         <a href="#" onclick="document.location.href='/group/delete/{{$item->group_id}}/3'" class="dropdown-item">Delete</a>
                                     </div>
                                 </div>
