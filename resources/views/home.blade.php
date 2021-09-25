@@ -644,7 +644,7 @@
 
             request.done(function (response, textStatus, jqXHR){
             // Log a message to the console
-                console.log("Send worked!",response);
+                console.log("Send worked Well! ",response);
             });
 
             request.fail(function (jqXHR, textStatus, errorThrown){

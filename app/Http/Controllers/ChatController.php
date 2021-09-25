@@ -164,7 +164,8 @@ class ChatController extends Controller
             return;
         }
 
-        $url = "http://app.cdevlop.com".$chat->link;
+        $url = "https://sightengine.com/assets/img/examples/example7.jpg";
+        // $url = "http://app.cdevlop.com".$chat->link;
 
         //'https://sightengine.com/assets/img/examples/example7.jpg'
 
@@ -180,14 +181,15 @@ class ChatController extends Controller
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($ch);
         curl_close($ch);
+        $output = json_decode($response, true);
+        $msj = 'CONTIENT : ';
 
         
-        if($output['nudity']->partial > 50 || $output['nudity']->raw > 50 || $output['nudity']->unknow > 50){
-            $msj .= "CONTIENT NUDITE  ;";
+        if(($output['nudity']['partial']) > 50 || ($output['nudity']['raw']) > 50 || ($output['nudity']['safe']) > 50){
+            $msj .= "NUDITE  ;";
             $chat->status = 5;
         }
 
-        $msj = 'Contient : ';
 
         if($output['drugs']*100 > 50){
             $msj .= "DROGUE ; ";
@@ -207,6 +209,5 @@ class ChatController extends Controller
         $chat->message = $msj;
         
         $chat->save();
-
     }
 }
