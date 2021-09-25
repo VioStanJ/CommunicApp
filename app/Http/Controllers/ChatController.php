@@ -164,8 +164,7 @@ class ChatController extends Controller
             return;
         }
 
-        $url = "https://sightengine.com/assets/img/examples/example7.jpg";
-        // $url = "http://app.cdevlop.com".$chat->link;
+        $url = "http://app.cdevlop.com".$chat->link;
 
         //'https://sightengine.com/assets/img/examples/example7.jpg'
 
