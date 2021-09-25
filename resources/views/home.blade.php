@@ -270,6 +270,7 @@
                                     <div class="dropdown-menu dropdown-menu-right">
                                         <a href="#" class="dropdown-item" onclick="chatGroup(this,'{{$item->group}}')">Open</a>
                                         <a href="#" class="dropdown-item" data-toggle="modal" data-target="#intiveGroup"  onclick="setGroupInvite(this,'{{$item}}')">Add Members</a>
+                                        <a href="#" onclick="document.location.href='/group/delete/{{$item->group_id}}/3'" class="dropdown-item">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -395,8 +396,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="#" class="dropdown-item example-close-selected-chat">Close chat</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item text-danger example-block-user">Block</a>
+                            {{-- <div class="dropdown-divider"></div> --}}
+                            {{-- <a href="#" class="dropdown-item text-danger example-block-user">Block</a> --}}
                         </div>
                     </li>
                 </ul>

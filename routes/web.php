@@ -31,6 +31,7 @@ Route::get('/friend/request/{id}/{status}',[App\Http\Controllers\InvitationContr
 Route::post('/create/group',[App\Http\Controllers\GroupController::class,'create'])->name('create.group');
 Route::post('/add/user/group',[App\Http\Controllers\GroupController::class,'add'])->name('add.group');
 Route::get('/group/request/{id}/{status}',[App\Http\Controllers\GroupController::class,'repond'])->name('repond.group.request');
+Route::get('/group/delete/{id}/{status}',[App\Http\Controllers\GroupController::class,'delete'])->name('delete.group.request');
 
 // Chat
 Route::post('/send/message',[App\Http\Controllers\ChatController::class,'send'])->name('send.message');

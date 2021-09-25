@@ -63,6 +63,25 @@ class GroupController extends Controller
         return redirect()->back();
     }
 
+    public function delete(Request $request,$id,$status)
+    {
+        $user = $request->user();
+
+        $group = Group::where('id','=',$id)->get()->first();
+        $group_users = GroupUser::where('group_id','=',$id)->get()->first();
+
+        if($user->id == $group->created_by){
+            $group->status = $status;
+            $group->save();
+            $group_users->status = $status;
+            $group_users->save();
+        }else{
+            return redirect()->back()->withErrors(['You are not admin of this group :/ !']);
+        }
+
+        return redirect()->back();
+    }
+
     public function repond(Request $request,$id,$status)
     {
         $user = $request->user();
